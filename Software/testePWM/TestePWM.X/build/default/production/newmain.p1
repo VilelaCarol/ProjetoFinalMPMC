@@ -272,8 +272,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;newmain.c: 36:         btn_mais_aux = 1;
 [e = _btn_mais_aux -> 1 `i ]
 "37
-[; ;newmain.c: 37:         if(CCPR1L<=100){
-[e $ ! <= -> _CCPR1L `i -> 100 `i 99  ]
+[; ;newmain.c: 37:         if(CCPR1L<100){
+[e $ ! < -> _CCPR1L `i -> 100 `i 99  ]
 {
 "38
 [; ;newmain.c: 38:             CCPR1L+=10;
@@ -281,126 +281,148 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39
 [; ;newmain.c: 39:         }
 }
-[e :U 99 ]
-"40
-[; ;newmain.c: 40:     }
-}
 [e $U 100  ]
+"40
+[; ;newmain.c: 40:         else{
+[e :U 99 ]
+{
 "41
-[; ;newmain.c: 41:     else{
-[e :U 98 ]
-{
+[; ;newmain.c: 41:             CCPR1L = 100;
+[e = _CCPR1L -> -> 100 `i `uc ]
 "42
-[; ;newmain.c: 42:         if(PORTBbits.RB2){
-[e $ ! != -> . . _PORTBbits 0 2 `i -> 0 `i 101  ]
-{
-"43
-[; ;newmain.c: 43:             btn_mais_aux = 0;
-[e = _btn_mais_aux -> 0 `i ]
-"44
-[; ;newmain.c: 44:         }
-}
-[e :U 101 ]
-"45
-[; ;newmain.c: 45:     }
+[; ;newmain.c: 42:         }
 }
 [e :U 100 ]
+"43
+[; ;newmain.c: 43:     }
+}
+[e $U 101  ]
+"44
+[; ;newmain.c: 44:     else{
+[e :U 98 ]
+{
+"45
+[; ;newmain.c: 45:         if(PORTBbits.RB2){
+[e $ ! != -> . . _PORTBbits 0 2 `i -> 0 `i 102  ]
+{
+"46
+[; ;newmain.c: 46:             btn_mais_aux = 0;
+[e = _btn_mais_aux -> 0 `i ]
 "47
-[; ;newmain.c: 47: }
+[; ;newmain.c: 47:         }
+}
+[e :U 102 ]
+"48
+[; ;newmain.c: 48:     }
+}
+[e :U 101 ]
+"50
+[; ;newmain.c: 50: }
 [e :UE 97 ]
 }
-"49
-[; ;newmain.c: 49: void verificaBtnMenos(){
+"52
+[; ;newmain.c: 52: void verificaBtnMenos(){
 [v _verificaBtnMenos `(v ~T0 @X0 1 ef ]
 {
 [e :U _verificaBtnMenos ]
 [f ]
-"51
-[; ;newmain.c: 51:     if(!btn_menos_aux && !PORTBbits.RB3){
-[e $ ! && ! != _btn_menos_aux -> 0 `i ! != -> . . _PORTBbits 0 3 `i -> 0 `i 103  ]
-{
-"52
-[; ;newmain.c: 52:         btn_menos_aux = 1;
-[e = _btn_menos_aux -> 1 `i ]
-"53
-[; ;newmain.c: 53:         if(CCPR1L>=0){
-[e $ ! >= -> _CCPR1L `i -> 0 `i 104  ]
-{
 "54
-[; ;newmain.c: 54:             CCPR1L-=10;
-[e =- _CCPR1L -> -> 10 `i `Vuc ]
+[; ;newmain.c: 54:     if(!btn_menos_aux && !PORTBbits.RB3){
+[e $ ! && ! != _btn_menos_aux -> 0 `i ! != -> . . _PORTBbits 0 3 `i -> 0 `i 104  ]
+{
 "55
-[; ;newmain.c: 55:         }
-}
-[e :U 104 ]
+[; ;newmain.c: 55:         btn_menos_aux = 1;
+[e = _btn_menos_aux -> 1 `i ]
 "56
-[; ;newmain.c: 56:    }
-}
-[e $U 105  ]
+[; ;newmain.c: 56:         if(CCPR1L>0){
+[e $ ! > -> _CCPR1L `i -> 0 `i 105  ]
+{
 "57
-[; ;newmain.c: 57:     else{
-[e :U 103 ]
-{
+[; ;newmain.c: 57:             CCPR1L-=10;
+[e =- _CCPR1L -> -> 10 `i `Vuc ]
 "58
-[; ;newmain.c: 58:         if(PORTBbits.RB3){
-[e $ ! != -> . . _PORTBbits 0 3 `i -> 0 `i 106  ]
-{
+[; ;newmain.c: 58:         }
+}
+[e $U 106  ]
 "59
-[; ;newmain.c: 59:             btn_menos_aux = 0;
-[e = _btn_menos_aux -> 0 `i ]
+[; ;newmain.c: 59:         else{
+[e :U 105 ]
+{
 "60
-[; ;newmain.c: 60:         }
+[; ;newmain.c: 60:             CCPR1L = 0;
+[e = _CCPR1L -> -> 0 `i `uc ]
+"61
+[; ;newmain.c: 61:         }
 }
 [e :U 106 ]
-"61
-[; ;newmain.c: 61:     }
-}
-[e :U 105 ]
 "62
-[; ;newmain.c: 62: }
-[e :UE 102 ]
+[; ;newmain.c: 62:    }
+}
+[e $U 107  ]
+"63
+[; ;newmain.c: 63:     else{
+[e :U 104 ]
+{
+"64
+[; ;newmain.c: 64:         if(PORTBbits.RB3){
+[e $ ! != -> . . _PORTBbits 0 3 `i -> 0 `i 108  ]
+{
+"65
+[; ;newmain.c: 65:             btn_menos_aux = 0;
+[e = _btn_menos_aux -> 0 `i ]
+"66
+[; ;newmain.c: 66:         }
+}
+[e :U 108 ]
+"67
+[; ;newmain.c: 67:     }
+}
+[e :U 107 ]
+"68
+[; ;newmain.c: 68: }
+[e :UE 103 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"64
-[; ;newmain.c: 64: void main(void) {
+"70
+[; ;newmain.c: 70: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"66
-[; ;newmain.c: 66:     TRISC = 0x00;
+"72
+[; ;newmain.c: 72:     TRISC = 0x00;
 [e = _TRISC -> -> 0 `i `uc ]
-"68
-[; ;newmain.c: 68:     OPTION_REGbits.INTEDG = 1;
+"74
+[; ;newmain.c: 74:     OPTION_REGbits.INTEDG = 1;
 [e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
-"69
-[; ;newmain.c: 69:     TRISB = 1;
+"75
+[; ;newmain.c: 75:     TRISB = 1;
 [e = _TRISB -> -> 1 `i `uc ]
-"71
-[; ;newmain.c: 71:     configPWMRegs();
-[e ( _configPWMRegs ..  ]
-"76
-[; ;newmain.c: 76:     while(1)
-[e :U 109 ]
 "77
-[; ;newmain.c: 77:     {
-{
-"78
-[; ;newmain.c: 78:         verificaBtnMais();
-[e ( _verificaBtnMais ..  ]
-"79
-[; ;newmain.c: 79:         verificaBtnMenos();
-[e ( _verificaBtnMenos ..  ]
+[; ;newmain.c: 77:     configPWMRegs();
+[e ( _configPWMRegs ..  ]
 "82
-[; ;newmain.c: 82:     }
-}
-[e :U 108 ]
-[e $U 109  ]
-[e :U 110 ]
+[; ;newmain.c: 82:     while(1)
+[e :U 111 ]
 "83
-[; ;newmain.c: 83:     return;
-[e $UE 107  ]
+[; ;newmain.c: 83:     {
+{
 "84
-[; ;newmain.c: 84: }
-[e :UE 107 ]
+[; ;newmain.c: 84:         verificaBtnMais();
+[e ( _verificaBtnMais ..  ]
+"85
+[; ;newmain.c: 85:         verificaBtnMenos();
+[e ( _verificaBtnMenos ..  ]
+"88
+[; ;newmain.c: 88:     }
+}
+[e :U 110 ]
+[e $U 111  ]
+[e :U 112 ]
+"89
+[; ;newmain.c: 89:     return;
+[e $UE 109  ]
+"90
+[; ;newmain.c: 90: }
+[e :UE 109 ]
 }

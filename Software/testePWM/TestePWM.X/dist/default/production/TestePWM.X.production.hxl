@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_3.o
+ C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_3.o
  -Odist/default/production\TestePWM.X.production.hex
  -logfile=dist/default/production\TestePWM.X.production.hxl
  -format=INHX032
@@ -9,21 +9,22 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 5h		(C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_3.o)
-  F22h - FFFh		(C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_3.o)
+  0h - 5h		(C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_3.o)
+  F10h - FFFh		(C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_3.o)
  Unused ranges:
-  6h - F21h
+  6h - F0Fh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
 00000000 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
-00000F20 | -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000F10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000F20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000F30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000F40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000F50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

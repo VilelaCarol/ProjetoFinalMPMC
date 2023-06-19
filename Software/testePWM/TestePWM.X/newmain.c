@@ -34,8 +34,11 @@ void verificaBtnMais(){
     //verificando botão mais 
     if(!btn_mais_aux && !BTN_MAIS){
         btn_mais_aux = 1;
-        if(PWM_REG<=100){
+        if(PWM_REG<100){
             PWM_REG+=10;
+        }
+        else{
+            PWM_REG = 100;
         }
     }
     else{
@@ -50,8 +53,11 @@ void verificaBtnMenos(){
 
     if(!btn_menos_aux && !BTN_MENOS){
         btn_menos_aux = 1;
-        if(PWM_REG>=0){
+        if(PWM_REG>0){
             PWM_REG-=10;
+        }
+        else{
+            PWM_REG = 0;
         }
    }
     else{

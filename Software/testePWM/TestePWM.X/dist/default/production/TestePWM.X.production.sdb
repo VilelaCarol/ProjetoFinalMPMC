@@ -15,9 +15,9 @@
 [v _configPWMRegs configPWMRegs `(v  1 e 1 0 ]
 "32
 [v _verificaBtnMais verificaBtnMais `(v  1 e 1 0 ]
-"49
+"52
 [v _verificaBtnMenos verificaBtnMenos `(v  1 e 1 0 ]
-"64
+"70
 [v _main main `(v  1 e 1 0 ]
 [s S26 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
@@ -61,20 +61,20 @@
 [v _btn_mais_aux btn_mais_aux `i  1 e 2 0 ]
 "21
 [v _btn_menos_aux btn_menos_aux `i  1 e 2 0 ]
-"64
+"70
 [v _main main `(v  1 e 1 0 ]
 {
-"84
+"90
 } 0
-"49
+"52
 [v _verificaBtnMenos verificaBtnMenos `(v  1 e 1 0 ]
 {
-"62
+"68
 } 0
 "32
 [v _verificaBtnMais verificaBtnMais `(v  1 e 1 0 ]
 {
-"47
+"50
 } 0
 "23
 [v _configPWMRegs configPWMRegs `(v  1 e 1 0 ]

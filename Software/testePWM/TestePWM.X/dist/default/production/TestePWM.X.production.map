@@ -6,10 +6,10 @@ Linker command line:
   --edf=C:\Program Files\Microchip\xc8\v2.41\pic\dat\20230208172133_en.msgs \
   -cn -h+dist/default/production\TestePWM.X.production.sym \
   --cmf=dist/default/production\TestePWM.X.production.cmf -z -Q16F877A \
-  -oC:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_3.o \
+  -oC:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_3.o \
   --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
   -Mdist/default/production/TestePWM.X.production.map \
-  --md=C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_0.dat -E1 \
+  --md=C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh \
   -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 -AENTRY=00h-0FFhx32 \
   -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
@@ -22,7 +22,7 @@ Linker command line:
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry,init,end_init -ppowerup=CODE -pcinit=CODE \
   -pfunctab=ENTRY -k \
-  C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_12.o \
+  C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_12.o \
   dist/default/production\TestePWM.X.production.o 
 
 Object code version is 3.11
@@ -32,24 +32,24 @@ Machine type is 16F877A
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\carol\AppData\Local\Temp\xcAsk54.\driver_tmp_12.o
+C:\Users\carol\AppData\Local\Temp\xcAsn08.\driver_tmp_12.o
                 end_init                              0        0        3        0       0
 dist/default/production\TestePWM.X.production.o
                 cinit                               7F8      7F8        8      FF0       0
-                text3                               791      791        D      F22       0
-                text2                               7D4      7D4       24      FA8       0
-                text1                               7B7      7B7       1D      F6E       0
-                maintext                            79E      79E       19      F3C       0
+                text3                               788      788        D      F10       0
+                text2                               7D1      7D1       27      FA2       0
+                text1                               7AE      7AE       23      F5C       0
+                maintext                            795      795       19      F2A       0
                 bssCOMMON                            70       70        4       70       1
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CODE           
                 end_init                              0        0        3         0
                 cinit                               7F8      7F8        8         0
-                text3                               791      791        D         0
-                text2                               7D4      7D4       24         0
-                text1                               7B7      7B7       1D         0
-                maintext                            79E      79E       19         0
+                text3                               788      788        D         0
+                text2                               7D1      7D1       27         0
+                text1                               7AE      7AE       23         0
+                maintext                            795      795       19         0
 
         CLASS   STRCODE        
 
@@ -97,10 +97,10 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
                 bssCOMMON                      000070  000004  000074        70       1  COMMON      1
-                text3                          000791  00000D  00079E       F22       0  CODE        2
-                maintext                       00079E  000019  0007B7       F3C       0  CODE        2
-                text1                          0007B7  00001D  0007D4       F6E       0  CODE        2
-                text2                          0007D4  000024  0007F8       FA8       0  CODE        2
+                text3                          000788  00000D  000795       F10       0  CODE        2
+                maintext                       000795  000019  0007AE       F2A       0  CODE        2
+                text1                          0007AE  000023  0007D1       F5C       0  CODE        2
+                text2                          0007D1  000027  0007F8       FA2       0  CODE        2
                 cinit                          0007F8  000008  000800       FF0       0  CODE        2
 
 
@@ -111,14 +111,14 @@ UNUSED ADDRESS RANGES
         BANK1            00A0-00EF             50           1
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
-        CODE             0003-0790            78E           2
+        CODE             0003-0787            785           2
                          0800-1FFF            800
         COMMON           0074-007D              A           1
         CONFIG           2007-2007              1           2
-        CONST            0003-0790            100           2
+        CONST            0003-0787            100           2
                          0800-1FFF            100
         EEDATA           2100-21FF            100           2
-        ENTRY            0003-0790            100           2
+        ENTRY            0003-0787            100           2
                          0800-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              0020-006F             50           1
@@ -129,9 +129,9 @@ UNUSED ADDRESS RANGES
         SFR1             0080-009F             20           1
         SFR2             0100-010F             10           1
         SFR3             0180-018F             10           1
-        STRCODE          0003-0790            78E           2
+        STRCODE          0003-0787            785           2
                          0800-1FFF           1800
-        STRING           0003-0790            100           2
+        STRING           0003-0787            100           2
                          0800-1FFF            100
 
                                   Symbol Table
@@ -217,23 +217,23 @@ ___sp                     stack        0000
 ___stackhi                (abs)        0000
 ___stacklo                (abs)        0000
 __end_of__initialization  cinit        07FC
-__end_of_configPWMRegs    text3        079E
-__end_of_main             maintext     07B7
+__end_of_configPWMRegs    text3        0795
+__end_of_main             maintext     07AE
 __end_of_verificaBtnMais  text2        07F8
-__end_of_verificaBtnMenos text1        07D4
+__end_of_verificaBtnMenos text1        07D1
 __initialization          cinit        07F8
 __pbssCOMMON              bssCOMMON    0070
 __pcstackCOMMON           cstackCOMMON 0000
-__pmaintext               maintext     079E
-__ptext1                  text1        07B7
-__ptext2                  text2        07D4
-__ptext3                  text3        0791
+__pmaintext               maintext     0795
+__ptext1                  text1        07AE
+__ptext2                  text2        07D1
+__ptext3                  text3        0788
 _btn_mais_aux             bssCOMMON    0072
 _btn_menos_aux            bssCOMMON    0070
-_configPWMRegs            text3        0791
-_main                     maintext     079E
-_verificaBtnMais          text2        07D4
-_verificaBtnMenos         text1        07B7
+_configPWMRegs            text3        0788
+_main                     maintext     0795
+_verificaBtnMais          text2        07D1
+_verificaBtnMenos         text1        07AE
 btemp                     (abs)        007E
 end_of_initialization     cinit        07FC
 intlevel0                 functab      0000
@@ -252,12 +252,12 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 newmain.c
-		_main          		CODE           	079E	0000	25
-		_verificaBtnMenos		CODE           	07B7	0000	29
-		_configPWMRegs 		CODE           	0791	0000	13
-		_verificaBtnMais		CODE           	07D4	0000	36
+		_main          		CODE           	0795	0000	25
+		_verificaBtnMenos		CODE           	07AE	0000	35
+		_configPWMRegs 		CODE           	0788	0000	13
+		_verificaBtnMais		CODE           	07D1	0000	39
 
-newmain.c estimated size: 103
+newmain.c estimated size: 112
 
 shared
 		__initialization		CODE           	07F8	0000	4

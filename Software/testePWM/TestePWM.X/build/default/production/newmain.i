@@ -1839,8 +1839,11 @@ void verificaBtnMais(){
 
     if(!btn_mais_aux && !PORTBbits.RB2){
         btn_mais_aux = 1;
-        if(CCPR1L<=100){
+        if(CCPR1L<100){
             CCPR1L+=10;
+        }
+        else{
+            CCPR1L = 100;
         }
     }
     else{
@@ -1855,8 +1858,11 @@ void verificaBtnMenos(){
 
     if(!btn_menos_aux && !PORTBbits.RB3){
         btn_menos_aux = 1;
-        if(CCPR1L>=0){
+        if(CCPR1L>0){
             CCPR1L-=10;
+        }
+        else{
+            CCPR1L = 0;
         }
    }
     else{
