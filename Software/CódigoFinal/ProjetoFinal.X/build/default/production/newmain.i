@@ -2243,7 +2243,7 @@ void configIntExterns()
 
 float converteLeituraAnParaVolts(int leitura)
 {
-    return leitura * 255/5;
+    return leitura * 5/255;
 }
 
 int converteVoltsParaLux(float v_ldr){

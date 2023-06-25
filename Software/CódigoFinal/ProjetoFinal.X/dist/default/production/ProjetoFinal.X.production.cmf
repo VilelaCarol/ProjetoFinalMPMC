@@ -11,9 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-reset_vec CODE 0 0 0 3 2 1
-end_init CODE 0 C C 3 2 1
 $dist/default/production\ProjetoFinal.X.production.o
 cinit CODE 0 F F 2A 2 1
 text1 CODE 0 1493 1493 C4 2 1
@@ -69,6 +66,9 @@ strings STRING 0 1000 1000 81 2 1
 dataBANK1 BANK1 1 EC EC 2 1 1
 dataBANK3 BANK3 1 1E7 1E7 2 1 1
 bssCOMMON COMMON 1 7A 7A 2 1 1
+$C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+reset_vec CODE 0 0 0 3 2 1
+end_init CODE 0 C C 3 2 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -125,33 +125,33 @@ STRING 1800-1C56 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\ProjetoFinal.X.production.o
-F cinit CODE >659:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-F cinit CODE >662:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-F cinit CODE >702:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-10 cinit CODE >703:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-11 cinit CODE >704:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-16 cinit CODE >705:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-17 cinit CODE >706:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-1C cinit CODE >707:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-1D cinit CODE >711:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-1E cinit CODE >712:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-1F cinit CODE >713:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-24 cinit CODE >714:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-25 cinit CODE >715:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-2A cinit CODE >716:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-2B cinit CODE >720:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-2C cinit CODE >721:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-2D cinit CODE >722:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-2E cinit CODE >723:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-2F cinit CODE >724:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-30 cinit CODE >725:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-31 cinit CODE >726:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-32 cinit CODE >727:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-33 cinit CODE >730:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-34 cinit CODE >731:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-35 cinit CODE >737:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-35 cinit CODE >739:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
-36 cinit CODE >740:C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_1.s
+F cinit CODE >659:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+F cinit CODE >662:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+F cinit CODE >702:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+10 cinit CODE >703:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+11 cinit CODE >704:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+16 cinit CODE >705:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+17 cinit CODE >706:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+1C cinit CODE >707:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+1D cinit CODE >711:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+1E cinit CODE >712:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+1F cinit CODE >713:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+24 cinit CODE >714:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+25 cinit CODE >715:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+2A cinit CODE >716:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+2B cinit CODE >720:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+2C cinit CODE >721:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+2D cinit CODE >722:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+2E cinit CODE >723:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+2F cinit CODE >724:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+30 cinit CODE >725:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+31 cinit CODE >726:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+32 cinit CODE >727:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+33 cinit CODE >730:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+34 cinit CODE >731:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+35 cinit CODE >737:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+35 cinit CODE >739:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
+36 cinit CODE >740:C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_1.s
 4 intentry CODE >158:C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
 1CB0 text40 CODE >158:C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
 1CB0 text40 CODE >160:C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
@@ -1232,7 +1232,7 @@ __end_of_Lcd_Port 3A46 0 CODE 0 text39 dist/default/production\ProjetoFinal.X.pr
 ?_pow 197 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _INTF 59 0 ABS 0 - dist/default/production\ProjetoFinal.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
+___sp 0 0 STACK 2 stack C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
 _main 23BA 0 CODE 0 maintext dist/default/production\ProjetoFinal.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\ProjetoFinal.X.production.o
 exp@x E8 0 BANK1 1 cstackBANK1 dist/default/production\ProjetoFinal.X.production.o
@@ -1241,7 +1241,7 @@ log@x B8 0 BANK1 1 cstackBANK1 dist/default/production\ProjetoFinal.X.production
 __end_of_escreveLCD 3B64 0 CODE 0 text6 dist/default/production\ProjetoFinal.X.production.o
 pow@x 197 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
 pow@y 19B 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
-start 18 0 CODE 0 init C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
+start 18 0 CODE 0 init C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
 ___flmul@aexp 57 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.production.o
 ___flmul@bexp 5C 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.production.o
 ___flmul@prod 5D 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.production.o
@@ -1263,12 +1263,12 @@ ___awmod@sign 77 0 COMMON 1 cstackCOMMON dist/default/production\ProjetoFinal.X.
 _converteVoltsParaLux$1070 1C4 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
 _converteVoltsParaLux$1071 1B8 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
 _converteVoltsParaLux$1072 1BC 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 __end_oflog@coeff 20B8 0 STRING 0 strings dist/default/production\ProjetoFinal.X.production.o
 __end_of_converteLeituraAnParaVolts 3BD8 0 CODE 0 text30 dist/default/production\ProjetoFinal.X.production.o
@@ -1308,8 +1308,8 @@ __end_of___flsub 3E9C 0 CODE 0 text18 dist/default/production\ProjetoFinal.X.pro
 __end_of___fltol 23BA 0 CODE 0 text17 dist/default/production\ProjetoFinal.X.production.o
 intToASCIIinCustomBase@numero 28 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.production.o
 __Umul8_16@multiplicand 72 0 COMMON 1 cstackCOMMON dist/default/production\ProjetoFinal.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
-___stacklo 0 0 ABS 0 - C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
+___stackhi 0 0 ABS 0 - C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
+___stacklo 0 0 ABS 0 - C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
 ?_eval_poly A8 0 BANK1 1 cstackBANK1 dist/default/production\ProjetoFinal.X.production.o
 intToASCIIinCustomBase@resto 30 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.production.o
 _interrupcao 3960 0 CODE 0 text40 dist/default/production\ProjetoFinal.X.production.o
@@ -1331,7 +1331,7 @@ __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.p
 __pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\ProjetoFinal.X.production.o
 __pcstackBANK3 190 0 BANK3 1 cstackBANK3 dist/default/production\ProjetoFinal.X.production.o
 _TMR2ON 92 0 ABS 0 - dist/default/production\ProjetoFinal.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
+___int_sp 0 0 STACK 2 stack C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -1407,7 +1407,7 @@ __stringtab 2000 0 STRING 0 strings dist/default/production\ProjetoFinal.X.produ
 Lcd_Write_String@a 77 0 COMMON 1 cstackCOMMON dist/default/production\ProjetoFinal.X.production.o
 Lcd_Write_String@i 23 0 BANK0 1 cstackBANK0 dist/default/production\ProjetoFinal.X.production.o
 _luminosidade_desejada EC 0 BANK1 1 dataBANK1 dist/default/production\ProjetoFinal.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\carol\AppData\Local\Temp\xcAs33mg.\driver_tmp_12.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\carol\AppData\Local\Temp\xcAs3a78.\driver_tmp_12.o
 __end_of___xxtofl 27A6 0 CODE 0 text31 dist/default/production\ProjetoFinal.X.production.o
 _configPWMRegs 38EC 0 CODE 0 text34 dist/default/production\ProjetoFinal.X.production.o
 __pdataBANK1 EC 0 BANK1 1 dataBANK1 dist/default/production\ProjetoFinal.X.production.o

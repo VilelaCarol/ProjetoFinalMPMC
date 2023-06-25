@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.41 build 20230208172133 
-                                                                                               Sun Jun 25 14:08:45 2023
+                                                                                               Sun Jun 25 14:26:44 2023
 
 Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1 
      1                           	processor	16F877A
@@ -9497,8 +9497,8 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   9473                           
   9474                           
   9475                           ;newmain.c: 212: float converteLeituraAnParaVolts(int leitura);newmain.c: 213: {;newmain
-      +                          .c: 214:     return leitura * 255/5;
-  9476     1DB2  30FF               	movlw	255
+      +                          .c: 214:     return leitura * 5/255;
+  9476     1DB2  3005               	movlw	5
   9477     1DB3  00F4               	movwf	___wmul@multiplicand
   9478     1DB4  3000               	movlw	0
   9479     1DB5  00F5               	movwf	___wmul@multiplicand+1
@@ -9515,7 +9515,7 @@ Microchip MPLAB XC8 C Compiler v2.41 (Free license) build 20230208172133 Og1
   9490     1DC4  00A3               	movwf	___awdiv@dividend+1
   9491     1DC5  0872               	movf	?___wmul,w
   9492     1DC6  00A2               	movwf	___awdiv@dividend
-  9493     1DC7  3005               	movlw	5
+  9493     1DC7  30FF               	movlw	255
   9494     1DC8  00A0               	movwf	___awdiv@divisor
   9495     1DC9  3000               	movlw	0
   9496     1DCA  00A1               	movwf	___awdiv@divisor+1
@@ -11260,7 +11260,7 @@ EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.41 build 20230208172133 
-Symbol Table                                                                                   Sun Jun 25 14:08:45 2023
+Symbol Table                                                                                   Sun Jun 25 14:26:44 2023
 
                       ___fldiv@aexp 00E7                        ___fldiv@bexp 00E6  
                                  pc 0002                        ___fldiv@sign 00DF  

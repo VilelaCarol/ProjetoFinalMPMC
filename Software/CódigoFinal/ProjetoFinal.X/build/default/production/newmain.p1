@@ -1192,8 +1192,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;newmain.c: 213: {
 [f ]
 "214
-[; ;newmain.c: 214:     return leitura * 255/5;
-[e ) -> / * _leitura -> 255 `i -> 5 `i `f ]
+[; ;newmain.c: 214:     return leitura * 5/255;
+[e ) -> / * _leitura -> 5 `i -> 255 `i `f ]
 [e $UE 158  ]
 "215
 [; ;newmain.c: 215: }
