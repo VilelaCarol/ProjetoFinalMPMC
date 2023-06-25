@@ -1179,21 +1179,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 157 ]
 }
 "212
-[; ;newmain.c: 212: float converteLeituraAnParaVolts(int leitura)
-[v _converteLeituraAnParaVolts `(f ~T0 @X0 1 ef1`i ]
+[; ;newmain.c: 212: float converteLeituraAnParaVolts(float leitura)
+[v _converteLeituraAnParaVolts `(f ~T0 @X0 1 ef1`f ]
 "213
 [; ;newmain.c: 213: {
 {
 [e :U _converteLeituraAnParaVolts ]
 "212
-[; ;newmain.c: 212: float converteLeituraAnParaVolts(int leitura)
-[v _leitura `i ~T0 @X0 1 r1 ]
+[; ;newmain.c: 212: float converteLeituraAnParaVolts(float leitura)
+[v _leitura `f ~T0 @X0 1 r1 ]
 "213
 [; ;newmain.c: 213: {
 [f ]
 "214
 [; ;newmain.c: 214:     return leitura * 5/255;
-[e ) -> / * _leitura -> 5 `i -> 255 `i `f ]
+[e ) / * _leitura -> -> 5 `i `f -> -> 255 `i `f ]
 [e $UE 158  ]
 "215
 [; ;newmain.c: 215: }
@@ -1207,9 +1207,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _v_ldr `f ~T0 @X0 1 r1 ]
 [f ]
 "218
-[; ;newmain.c: 218:     long double r_ldr = (10000*v_ldr)/(5-v_ldr);
-[v _r_ldr `d ~T0 @X0 1 a ]
-[e = _r_ldr -> / * -> -> 10000 `i `f _v_ldr - -> -> 5 `i `f _v_ldr `d ]
+[; ;newmain.c: 218:     int r_ldr = (10000*v_ldr)/(5-v_ldr);
+[v _r_ldr `i ~T0 @X0 1 a ]
+[e = _r_ldr -> / * -> -> 10000 `i `f _v_ldr - -> -> 5 `i `f _v_ldr `i ]
 "219
 [; ;newmain.c: 219:     long double b = ((log10(4) - log10(9)) - 1)/990;
 [v _b `d ~T0 @X0 1 a ]
@@ -1219,8 +1219,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _l_ldr `d ~T0 @X0 1 a ]
 [e = _l_ldr * + -> - ( _log10 (1 -> _r_ldr `d ( _log10 (1 -> -> 400 `i `d `d * -> -> 1000 `i `d _b -> ( _pow (2 , -> _b `d -> -U -> 1 `i `d `d ]
 "232
-[; ;newmain.c: 232:     return l_ldr;
-[e ) -> _l_ldr `i ]
+[; ;newmain.c: 232:     return r_ldr;
+[e ) _r_ldr ]
 [e $UE 159  ]
 "233
 [; ;newmain.c: 233: }
@@ -1276,7 +1276,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "258
 [; ;newmain.c: 258:         float v_ldr = converteLeituraAnParaVolts(leitura);
 [v _v_ldr `f ~T0 @X0 1 a ]
-[e = _v_ldr ( _converteLeituraAnParaVolts (1 _leitura ]
+[e = _v_ldr ( _converteLeituraAnParaVolts (1 -> _leitura `f ]
 "259
 [; ;newmain.c: 259:         int luminosidade_atual = converteVoltsParaLux(v_ldr);
 [v _luminosidade_atual `i ~T0 @X0 1 a ]

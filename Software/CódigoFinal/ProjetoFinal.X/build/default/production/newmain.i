@@ -2241,13 +2241,13 @@ void configIntExterns()
     return;
 }
 
-float converteLeituraAnParaVolts(int leitura)
+float converteLeituraAnParaVolts(float leitura)
 {
     return leitura * 5/255;
 }
 
 int converteVoltsParaLux(float v_ldr){
-    long double r_ldr = (10000*v_ldr)/(5-v_ldr);
+    int r_ldr = (10000*v_ldr)/(5-v_ldr);
     long double b = ((log10(4) - log10(9)) - 1)/990;
     long double l_ldr =
     (
@@ -2261,7 +2261,7 @@ int converteVoltsParaLux(float v_ldr){
     (
         pow(b,-1)
     );
-    return l_ldr;
+    return r_ldr;
 }
 
 void main(void) {
