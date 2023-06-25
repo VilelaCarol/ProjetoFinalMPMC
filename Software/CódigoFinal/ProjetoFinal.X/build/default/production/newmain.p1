@@ -1211,16 +1211,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _r_ldr `i ~T0 @X0 1 a ]
 [e = _r_ldr -> / * -> -> 10000 `i `f _v_ldr - -> -> 5 `i `f _v_ldr `i ]
 "219
-[; ;newmain.c: 219:     long double b = ((log10(4) - log10(9)) - 1)/990;
-[v _b `d ~T0 @X0 1 a ]
-[e = _b -> / - - ( _log10 (1 -> -> 4 `i `d ( _log10 (1 -> -> 9 `i `d -> -> 1 `i `d -> -> 990 `i `d `d ]
+[; ;newmain.c: 219:     float b = ((log10(4) - log10(9)) - 1)/990;
+[v _b `f ~T0 @X0 1 a ]
+[e = _b -> / - - ( _log10 (1 -> -> 4 `i `d ( _log10 (1 -> -> 9 `i `d -> -> 1 `i `d -> -> 990 `i `d `f ]
 "220
-[; ;newmain.c: 220:     long double l_ldr =
-[v _l_ldr `d ~T0 @X0 1 a ]
-[e = _l_ldr * + -> - ( _log10 (1 -> _r_ldr `d ( _log10 (1 -> -> 400 `i `d `d * -> -> 1000 `i `d _b -> ( _pow (2 , -> _b `d -> -U -> 1 `i `d `d ]
+[; ;newmain.c: 220:     float l_ldr =
+[v _l_ldr `f ~T0 @X0 1 a ]
+[e = _l_ldr -> * + - ( _log10 (1 -> _r_ldr `d ( _log10 (1 -> -> 400 `i `d -> * -> -> 1000 `i `f _b `d ( _pow (2 , -> _b `d -> -U -> 1 `i `d `f ]
 "232
-[; ;newmain.c: 232:     return r_ldr;
-[e ) _r_ldr ]
+[; ;newmain.c: 232:     return l_ldr;
+[e ) -> _l_ldr `i ]
 [e $UE 159  ]
 "233
 [; ;newmain.c: 233: }
@@ -1258,7 +1258,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;newmain.c: 249:     char* texto_menu;
 [v _texto_menu `*uc ~T0 @X0 1 a ]
 "251
-[; ;newmain.c: 251:     texto_menu = "LAMPADA EM :";
+[; ;newmain.c: 251:     texto_menu = "LUMINOSIDADE ATUAL:";
 [e = _texto_menu :s 3C ]
 "254
 [; ;newmain.c: 254:     configIntExterns();
@@ -1311,4 +1311,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [a 2C 53 48 48 32 76 85 88 0 ]
 [a 1C 77 69 78 85 32 45 32 79 66 74 69 84 73 86 79 0 ]
-[a 3C 76 65 77 80 65 68 65 32 69 77 32 58 0 ]
+[a 3C 76 85 77 73 78 79 83 73 68 65 68 69 32 65 84 85 65 76 58 0 ]

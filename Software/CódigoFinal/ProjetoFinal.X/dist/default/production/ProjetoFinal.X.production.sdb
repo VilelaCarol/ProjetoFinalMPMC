@@ -212,15 +212,15 @@
 [v _main main `(v  1 e 1 0 ]
 {
 "262
-[v main@texto_luminosidade texto_luminosidade `[16]uc  1 a 16 58 ]
+[v main@texto_luminosidade texto_luminosidade `[16]uc  1 a 16 62 ]
 "258
-[v main@v_ldr v_ldr `f  1 a 4 74 ]
+[v main@v_ldr v_ldr `f  1 a 4 78 ]
 "259
-[v main@luminosidade_atual luminosidade_atual `i  1 a 2 80 ]
+[v main@luminosidade_atual luminosidade_atual `i  1 a 2 84 ]
 "257
-[v main@leitura leitura `i  1 a 2 78 ]
+[v main@leitura leitura `i  1 a 2 82 ]
 "249
-[v main@texto_menu texto_menu `*.24uc  1 a 1 82 ]
+[v main@texto_menu texto_menu `*.24uc  1 a 1 86 ]
 "270
 } 0
 "86
@@ -343,7 +343,9 @@
 [v _converteVoltsParaLux converteVoltsParaLux `(i  1 e 2 0 ]
 {
 "219
-[v converteVoltsParaLux@b b `d  1 a 4 52 ]
+[v converteVoltsParaLux@b b `f  1 a 4 58 ]
+"220
+[v converteVoltsParaLux@l_ldr l_ldr `f  1 a 4 32 ]
 "218
 [v converteVoltsParaLux@r_ldr r_ldr `i  1 a 2 56 ]
 "217

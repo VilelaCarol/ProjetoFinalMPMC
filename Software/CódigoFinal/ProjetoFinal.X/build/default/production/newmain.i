@@ -2248,8 +2248,8 @@ float converteLeituraAnParaVolts(float leitura)
 
 int converteVoltsParaLux(float v_ldr){
     int r_ldr = (10000*v_ldr)/(5-v_ldr);
-    long double b = ((log10(4) - log10(9)) - 1)/990;
-    long double l_ldr =
+    float b = ((log10(4) - log10(9)) - 1)/990;
+    float l_ldr =
     (
         log10(r_ldr)
         -
@@ -2261,7 +2261,7 @@ int converteVoltsParaLux(float v_ldr){
     (
         pow(b,-1)
     );
-    return r_ldr;
+    return l_ldr;
 }
 
 void main(void) {
@@ -2280,7 +2280,7 @@ void main(void) {
 
     char* texto_menu;
 
-    texto_menu = "LAMPADA EM :";
+    texto_menu = "LUMINOSIDADE ATUAL:";
 
 
     configIntExterns();
