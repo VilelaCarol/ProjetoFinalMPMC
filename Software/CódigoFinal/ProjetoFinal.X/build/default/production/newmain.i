@@ -1906,7 +1906,42 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 # 12 "newmain.c" 2
-# 28 "newmain.c"
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\math.h" 1 3
+
+
+
+# 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\__unsupported.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\math.h" 2 3
+# 30 "C:\\Program Files\\Microchip\\xc8\\v2.41\\pic\\include\\c90\\math.h" 3
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+# 13 "newmain.c" 2
+# 29 "newmain.c"
 # 1 "./lcd.h" 1
 
 
@@ -2022,7 +2057,7 @@ void Lcd_Shift_Left()
  Lcd_Cmd(0x01);
  Lcd_Cmd(0x08);
 }
-# 28 "newmain.c" 2
+# 29 "newmain.c" 2
 
 
 
@@ -2030,7 +2065,55 @@ int btn_mais_aux = 0;
 int btn_menos_aux = 0;
 int porcentagem_PWM = 50;
 int menu_ativo = 0;
+int luminosidade_desejada = 400;
 
+void configADC(){
+
+    ADCON1bits.PCFG0 = 0;
+    ADCON1bits.PCFG1 = 1;
+    ADCON1bits.PCFG2 = 1;
+    ADCON1bits.PCFG3 = 1;
+
+
+
+    ADCON0bits.ADCS0 = 0;
+    ADCON0bits.ADCS1 = 0;
+    ADCON1bits.ADCS2 = 0;
+
+
+
+    ADCON1bits.ADFM = 0;
+
+
+    ADRESL = 0x00;
+    ADRESH = 0X00;
+
+
+
+    ADCON0bits.ADON = 1;
+
+
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+
+}
+
+int getValorADC(){
+    int valor;
+
+
+    ADCON0bits.GO = 1;
+
+
+
+    _delay((unsigned long)((10)*(4000000/4000000.0)));
+
+
+
+    valor = ADRESH;
+    return valor;
+}
 
 void intToASCIIinCustomBase(int numero, char* resultado, int base) {
     int indice = 0;
@@ -2070,11 +2153,11 @@ void verificaBtnMais(){
 
     if(!btn_mais_aux && !PORTBbits.RB2){
         btn_mais_aux = 1;
-        if(porcentagem_PWM<100){
-            porcentagem_PWM+=10;
+        if(luminosidade_desejada<1000){
+            luminosidade_desejada+=10;
         }
         else{
-            porcentagem_PWM = 100;
+            luminosidade_desejada = 1000;
         }
     }
     else{
@@ -2089,11 +2172,11 @@ void verificaBtnMenos(){
 
     if(!btn_menos_aux && !PORTBbits.RB3){
         btn_menos_aux = 1;
-        if(porcentagem_PWM>0){
-            porcentagem_PWM-=10;
+        if(luminosidade_desejada>10){
+            luminosidade_desejada-=10;
         }
         else{
-            porcentagem_PWM = 0;
+            luminosidade_desejada = 10;
         }
    }
     else{
@@ -2158,6 +2241,28 @@ void configIntExterns()
     return;
 }
 
+float converteLeituraAnParaVolts(int leitura)
+{
+    return leitura * 255/5;
+}
+
+int converteVoltsParaLux(float v_ldr){
+    long double r_ldr = (10000*v_ldr)/(5-v_ldr);
+    long double b = ((log10(4) - log10(9)) - 1)/990;
+    long double l_ldr =
+    (
+        log10(r_ldr)
+        -
+        log10(400)
+        +
+        1000 * b
+    )
+    *
+    (
+        pow(b,-1)
+    );
+    return l_ldr;
+}
 
 void main(void) {
 
@@ -2166,7 +2271,7 @@ void main(void) {
     OPTION_REGbits.INTEDG = 1;
     TRISB = 1;
 
-
+    configADC();
     configPWMRegs();
 
 
@@ -2181,13 +2286,15 @@ void main(void) {
     configIntExterns();
     while(1)
     {
+        int leitura = getValorADC();
+        float v_ldr = converteLeituraAnParaVolts(leitura);
+        int luminosidade_atual = converteVoltsParaLux(v_ldr);
         handleSetupMenu();
         CCPR1L = porcentagem_PWM;
-        char texto_porcentagem [16];
-        intToASCIIinCustomBase (porcentagem_PWM, texto_porcentagem, 10);
-        texto_porcentagem [14] = '%';
+        char texto_luminosidade [16];
+        intToASCIIinCustomBase (luminosidade_atual , texto_luminosidade, 10);
 
-        escreveLCD(texto_menu, texto_porcentagem);
+        escreveLCD(texto_menu, texto_luminosidade);
 
 
     }
