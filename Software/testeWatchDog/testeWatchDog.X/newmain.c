@@ -12,7 +12,10 @@
 #pragma CONFIG PWRTE = ON          // habilita o reset ao ligar. obs: posso ligar apenas um resistor no vcc no pino 1 com esse pragma
 #pragma BOREN = ON                 // habilita o reset por Brown-out
 
-
+void __interrupt() interrupcao(void)
+{
+    CLRWDT();
+}
 void main(void) {
     
     OPTION_REGbits.PSA = 1;         //indica a utilização do timer0 para Watchdog

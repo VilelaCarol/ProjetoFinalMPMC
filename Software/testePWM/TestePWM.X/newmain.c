@@ -19,11 +19,12 @@
 // FLAGS BOTÕES
 int btn_mais_aux = 0;
 int btn_menos_aux = 0;
+int porcentagem_PWM = 0;
 
 void configPWMRegs(){
     CCP1CON = 0x0F; // Select the PWM mode.
     PR2 = 100;      // Set the Cycle time to 100 for varying the duty cycle from 0-100
-    PWM_REG = 0;    // By default set the dutyCycle to 50
+    PWM_REG = porcentagem_PWM;    // By default set the dutyCycle to 50
     TMR2ON = 1;     //Start the Timer for PWM generation
     
     
@@ -34,11 +35,11 @@ void verificaBtnMais(){
     //verificando botão mais 
     if(!btn_mais_aux && !BTN_MAIS){
         btn_mais_aux = 1;
-        if(PWM_REG<100){
-            PWM_REG+=10;
+        if(porcentagem_PWM<100){
+            porcentagem_PWM+=10;
         }
         else{
-            PWM_REG = 100;
+            porcentagem_PWM = 100;
         }
     }
     else{
@@ -53,11 +54,11 @@ void verificaBtnMenos(){
 
     if(!btn_menos_aux && !BTN_MENOS){
         btn_menos_aux = 1;
-        if(PWM_REG>0){
-            PWM_REG-=10;
+        if(porcentagem_PWM>0){
+            porcentagem_PWM-=10;
         }
         else{
-            PWM_REG = 0;
+            porcentagem_PWM = 0;
         }
    }
     else{
@@ -83,6 +84,7 @@ void main(void) {
     { 
         verificaBtnMais();
         verificaBtnMenos();
+        PWM_REG = porcentagem_PWM;
         
          
     }

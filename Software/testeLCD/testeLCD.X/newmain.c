@@ -7,28 +7,31 @@
 
 
 #include <xc.h>
-#include "lcd.h"
-
+#define _XTAL_FREQ 4000000
 //*** define pinos referentes a interface com LCD
-#define RS RD2
-#define EN RD3
-#define D4 RD4
-#define D5 RD5
-#define D6 RD6
-#define D7 RD7
+#define RS PORTDbits.RD2
+#define EN PORTDbits.RD3
+#define D4 PORTDbits.RD4
+#define D5 PORTDbits.RD5
+#define D6 PORTDbits.RD6
+#define D7 PORTDbits.RD7
+
+#include "lcd.h"
 
 
 void main(void) {
+    TRISD = 0;
+    Lcd_Init(); //incia o lcd
     //colocar a variavel
     char buffer[20];
     while(1)
     {
          //** mostra uma string e o conte?do de uma vari?vel
     Lcd_Clear();                          //limpa LCD
-    sprintf(buffer, "Float = %0.2f", f);  //Armazena em buffer o conte?do da vari?vel f formatado com duas casas
-    Lcd_Set_Cursor(1,1);                  
-    Lcd_Write_String(buffer);             //Escreve o conte?do de buffer no LCD
-    __delay_ms(2000);
+    Lcd_Set_Cursor(1,1);
+                        
+    Lcd_Write_String("luminosidade atual: i%", );             //Escreve o conte?do de buffer no LCD
+    __delay_ms(100);
     }
     return;
 }

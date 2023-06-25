@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>testeLCD</name>
-            <creation-uuid>46ec94b4-77cb-40ea-9221-a6edef2ab97b</creation-uuid>
+            <name>ProjetoFinal</name>
+            <creation-uuid>9ae2cc32-bdbb-4588-a731-4e1dcfaf2b35</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>
