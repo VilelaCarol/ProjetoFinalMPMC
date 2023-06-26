@@ -119,9 +119,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "44 C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\math.h
 [; ;C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\math.h: 44: extern double log10(double);
 [v _log10 `(d ~T0 @X0 0 ef1`d ]
-"45
-[; ;C:\Program Files\Microchip\xc8\v2.41\pic\include\c90\math.h: 45: extern double pow(double, double) ;
-[v _pow `(d ~T0 @X0 0 ef2`d`d ]
 [p mainexit ]
 "1437 C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f877a.h
 [; ;C:/Program Files (x86)/Microchip/MPLABX/v5.35/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f877a.h: 1437: extern volatile unsigned char TRISC __attribute__((address(0x087)));
@@ -1137,178 +1134,189 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;newmain.c: 197:         verificaBtnMenos();
 [e ( _verificaBtnMenos ..  ]
 "198
-[; ;newmain.c: 198:         escreveLCD("MENU - OBJETIVO", "500 LUX");
-[e ( _escreveLCD (2 , :s 1C :s 2C ]
+[; ;newmain.c: 198:         char texto_luminosidade_desejada [16];
+[v _texto_luminosidade_desejada `uc ~T0 @X0 -> 16 `i a ]
+"199
+[; ;newmain.c: 199:         intToASCIIinCustomBase (luminosidade_desejada , texto_luminosidade_desejada, 10);
+[e ( _intToASCIIinCustomBase (3 , , _luminosidade_desejada &U _texto_luminosidade_desejada -> 10 `i ]
 "200
-[; ;newmain.c: 200:     }
+[; ;newmain.c: 200:         escreveLCD("MENU - OBJETIVO", texto_luminosidade_desejada);
+[e ( _escreveLCD (2 , :s 1C &U _texto_luminosidade_desejada ]
+"202
+[; ;newmain.c: 202:     }
 }
 [e :U 154 ]
 "192
 [; ;newmain.c: 192:     while (menu_ativo)
 [e $ != _menu_ativo -> 0 `i 155  ]
 [e :U 156 ]
-"201
-[; ;newmain.c: 201: }
+"203
+[; ;newmain.c: 203: }
 [e :UE 153 ]
 }
-"203
-[; ;newmain.c: 203: void configIntExterns()
+"205
+[; ;newmain.c: 205: void configIntExterns()
 [v _configIntExterns `(v ~T0 @X0 1 ef ]
-"204
-[; ;newmain.c: 204: {
+"206
+[; ;newmain.c: 206: {
 {
 [e :U _configIntExterns ]
 [f ]
-"205
-[; ;newmain.c: 205:     OPTION_REGbits.INTEDG = 0;
-[e = . . _OPTION_REGbits 0 4 -> -> 0 `i `uc ]
-"206
-[; ;newmain.c: 206:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "207
-[; ;newmain.c: 207:     INTCONbits.INTE = 1;
-[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
+[; ;newmain.c: 207:     OPTION_REGbits.INTEDG = 0;
+[e = . . _OPTION_REGbits 0 4 -> -> 0 `i `uc ]
 "208
-[; ;newmain.c: 208:     INTCONbits.INTF = 0;
-[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+[; ;newmain.c: 208:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
 "209
-[; ;newmain.c: 209:     return;
-[e $UE 157  ]
+[; ;newmain.c: 209:     INTCONbits.INTE = 1;
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
 "210
-[; ;newmain.c: 210: }
+[; ;newmain.c: 210:     INTCONbits.INTF = 0;
+[e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
+"211
+[; ;newmain.c: 211:     return;
+[e $UE 157  ]
+"212
+[; ;newmain.c: 212: }
 [e :UE 157 ]
 }
-"212
-[; ;newmain.c: 212: float converteLeituraAnParaVolts(float leitura)
+"214
+[; ;newmain.c: 214: float converteLeituraAnParaVolts(float leitura)
 [v _converteLeituraAnParaVolts `(f ~T0 @X0 1 ef1`f ]
-"213
-[; ;newmain.c: 213: {
+"215
+[; ;newmain.c: 215: {
 {
 [e :U _converteLeituraAnParaVolts ]
-"212
-[; ;newmain.c: 212: float converteLeituraAnParaVolts(float leitura)
-[v _leitura `f ~T0 @X0 1 r1 ]
-"213
-[; ;newmain.c: 213: {
-[f ]
 "214
-[; ;newmain.c: 214:     return leitura * 5/255;
+[; ;newmain.c: 214: float converteLeituraAnParaVolts(float leitura)
+[v _leitura `f ~T0 @X0 1 r1 ]
+"215
+[; ;newmain.c: 215: {
+[f ]
+"216
+[; ;newmain.c: 216:     return leitura * 5/255;
 [e ) / * _leitura -> -> 5 `i `f -> -> 255 `i `f ]
 [e $UE 158  ]
-"215
-[; ;newmain.c: 215: }
+"217
+[; ;newmain.c: 217: }
 [e :UE 158 ]
 }
-"217
-[; ;newmain.c: 217: int converteVoltsParaLux(float v_ldr){
+"219
+[; ;newmain.c: 219: int converteVoltsParaLux(float v_ldr){
 [v _converteVoltsParaLux `(i ~T0 @X0 1 ef1`f ]
 {
 [e :U _converteVoltsParaLux ]
 [v _v_ldr `f ~T0 @X0 1 r1 ]
 [f ]
-"218
-[; ;newmain.c: 218:     int r_ldr = (10000*v_ldr)/(5-v_ldr);
+"220
+[; ;newmain.c: 220:     int r_ldr = (10000*v_ldr)/(5-v_ldr);
 [v _r_ldr `i ~T0 @X0 1 a ]
 [e = _r_ldr -> / * -> -> 10000 `i `f _v_ldr - -> -> 5 `i `f _v_ldr `i ]
-"219
-[; ;newmain.c: 219:     float b = ((log10(4) - log10(9)) - 1)/990;
+"221
+[; ;newmain.c: 221:     float b = ((log10(4) - log10(9)) - 1)/990;
 [v _b `f ~T0 @X0 1 a ]
 [e = _b -> / - - ( _log10 (1 -> -> 4 `i `d ( _log10 (1 -> -> 9 `i `d -> -> 1 `i `d -> -> 990 `i `d `f ]
-"220
-[; ;newmain.c: 220:     float l_ldr =
+"222
+[; ;newmain.c: 222:     float l_ldr =
 [v _l_ldr `f ~T0 @X0 1 a ]
-[e = _l_ldr -> * + - ( _log10 (1 -> _r_ldr `d ( _log10 (1 -> -> 400 `i `d -> * -> -> 1000 `i `f _b `d ( _pow (2 , -> _b `d -> -U -> 1 `i `d `f ]
-"232
-[; ;newmain.c: 232:     return l_ldr;
+[e = _l_ldr -> * + - ( _log10 (1 -> _r_ldr `d ( _log10 (1 -> -> 400 `i `d -> * -> -> 1000 `i `f _b `d -> / -> -> 1 `i `f _b `d `f ]
+"234
+[; ;newmain.c: 234:     return l_ldr;
 [e ) -> _l_ldr `i ]
 [e $UE 159  ]
-"233
-[; ;newmain.c: 233: }
+"235
+[; ;newmain.c: 235: }
 [e :UE 159 ]
 }
+"236
+[; ;newmain.c: 236: float v_ldr;
+[v _v_ldr `f ~T0 @X0 1 e ]
+"237
+[; ;newmain.c: 237: int leitura;
+[v _leitura `i ~T0 @X0 1 e ]
+"238
+[; ;newmain.c: 238: int luminosidade_atual;
+[v _luminosidade_atual `i ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"235
-[; ;newmain.c: 235: void main(void) {
+"239
+[; ;newmain.c: 239: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"237
-[; ;newmain.c: 237:     TRISC = 0x00;
+"241
+[; ;newmain.c: 241:     TRISC = 0x00;
 [e = _TRISC -> -> 0 `i `uc ]
-"239
-[; ;newmain.c: 239:     OPTION_REGbits.INTEDG = 1;
-[e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
-"240
-[; ;newmain.c: 240:     TRISB = 1;
-[e = _TRISB -> -> 1 `i `uc ]
-"242
-[; ;newmain.c: 242:     configADC();
-[e ( _configADC ..  ]
 "243
-[; ;newmain.c: 243:     configPWMRegs();
-[e ( _configPWMRegs ..  ]
+[; ;newmain.c: 243:     OPTION_REGbits.INTEDG = 1;
+[e = . . _OPTION_REGbits 0 4 -> -> 1 `i `uc ]
+"244
+[; ;newmain.c: 244:     TRISB = 1;
+[e = _TRISB -> -> 1 `i `uc ]
 "246
-[; ;newmain.c: 246:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;newmain.c: 246:     configADC();
+[e ( _configADC ..  ]
 "247
-[; ;newmain.c: 247:     Lcd_Init();
-[e ( _Lcd_Init ..  ]
-"249
-[; ;newmain.c: 249:     char* texto_menu;
-[v _texto_menu `*uc ~T0 @X0 1 a ]
+[; ;newmain.c: 247:     configPWMRegs();
+[e ( _configPWMRegs ..  ]
+"250
+[; ;newmain.c: 250:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "251
-[; ;newmain.c: 251:     texto_menu = "LUMINOSIDADE ATUAL:";
-[e = _texto_menu :s 3C ]
-"254
-[; ;newmain.c: 254:     configIntExterns();
-[e ( _configIntExterns ..  ]
+[; ;newmain.c: 251:     Lcd_Init();
+[e ( _Lcd_Init ..  ]
+"253
+[; ;newmain.c: 253:     char* texto_menu;
+[v _texto_menu `*uc ~T0 @X0 1 a ]
 "255
-[; ;newmain.c: 255:     while(1)
-[e :U 162 ]
-"256
-[; ;newmain.c: 256:     {
-{
-"257
-[; ;newmain.c: 257:         int leitura = getValorADC();
-[v _leitura `i ~T0 @X0 1 a ]
-[e = _leitura ( _getValorADC ..  ]
+[; ;newmain.c: 255:     texto_menu = "LUMINOSIDADE ATUAL:";
+[e = _texto_menu :s 2C ]
 "258
-[; ;newmain.c: 258:         float v_ldr = converteLeituraAnParaVolts(leitura);
-[v _v_ldr `f ~T0 @X0 1 a ]
-[e = _v_ldr ( _converteLeituraAnParaVolts (1 -> _leitura `f ]
+[; ;newmain.c: 258:     configIntExterns();
+[e ( _configIntExterns ..  ]
 "259
-[; ;newmain.c: 259:         int luminosidade_atual = converteVoltsParaLux(v_ldr);
-[v _luminosidade_atual `i ~T0 @X0 1 a ]
-[e = _luminosidade_atual ( _converteVoltsParaLux (1 _v_ldr ]
+[; ;newmain.c: 259:     while(1)
+[e :U 162 ]
 "260
-[; ;newmain.c: 260:         handleSetupMenu();
-[e ( _handleSetupMenu ..  ]
+[; ;newmain.c: 260:     {
+{
 "261
-[; ;newmain.c: 261:         CCPR1L = porcentagem_PWM;
-[e = _CCPR1L -> _porcentagem_PWM `uc ]
+[; ;newmain.c: 261:         leitura = getValorADC();
+[e = _leitura ( _getValorADC ..  ]
 "262
-[; ;newmain.c: 262:         char texto_luminosidade [16];
-[v _texto_luminosidade `uc ~T0 @X0 -> 16 `i a ]
+[; ;newmain.c: 262:         v_ldr = converteLeituraAnParaVolts(leitura);
+[e = _v_ldr ( _converteLeituraAnParaVolts (1 -> _leitura `f ]
 "263
-[; ;newmain.c: 263:         intToASCIIinCustomBase (luminosidade_atual , texto_luminosidade, 10);
-[e ( _intToASCIIinCustomBase (3 , , _luminosidade_atual &U _texto_luminosidade -> 10 `i ]
+[; ;newmain.c: 263:         luminosidade_atual = converteVoltsParaLux(v_ldr);
+[e = _luminosidade_atual ( _converteVoltsParaLux (1 _v_ldr ]
+"264
+[; ;newmain.c: 264:         handleSetupMenu();
+[e ( _handleSetupMenu ..  ]
 "265
-[; ;newmain.c: 265:         escreveLCD(texto_menu, texto_luminosidade);
+[; ;newmain.c: 265:         CCPR1L = porcentagem_PWM;
+[e = _CCPR1L -> _porcentagem_PWM `uc ]
+"266
+[; ;newmain.c: 266:         char texto_luminosidade [16];
+[v _texto_luminosidade `uc ~T0 @X0 -> 16 `i a ]
+"267
+[; ;newmain.c: 267:         intToASCIIinCustomBase (luminosidade_atual , texto_luminosidade, 10);
+[e ( _intToASCIIinCustomBase (3 , , _luminosidade_atual &U _texto_luminosidade -> 10 `i ]
+"269
+[; ;newmain.c: 269:         escreveLCD(texto_menu, texto_luminosidade);
 [e ( _escreveLCD (2 , _texto_menu &U _texto_luminosidade ]
-"268
-[; ;newmain.c: 268:     }
+"272
+[; ;newmain.c: 272:     }
 }
 [e :U 161 ]
 [e $U 162  ]
 [e :U 163 ]
-"269
-[; ;newmain.c: 269:     return;
+"273
+[; ;newmain.c: 273:     return;
 [e $UE 160  ]
-"270
-[; ;newmain.c: 270: }
+"274
+[; ;newmain.c: 274: }
 [e :UE 160 ]
 }
-[a 2C 53 48 48 32 76 85 88 0 ]
 [a 1C 77 69 78 85 32 45 32 79 66 74 69 84 73 86 79 0 ]
-[a 3C 76 85 77 73 78 79 83 73 68 65 68 69 32 65 84 85 65 76 58 0 ]
+[a 2C 76 85 77 73 78 79 83 73 68 65 68 69 32 65 84 85 65 76 58 0 ]

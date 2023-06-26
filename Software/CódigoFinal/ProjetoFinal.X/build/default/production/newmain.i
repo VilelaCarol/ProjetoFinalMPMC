@@ -2227,7 +2227,9 @@ void handleSetupMenu ()
 
         verificaBtnMais();
         verificaBtnMenos();
-        escreveLCD("MENU - OBJETIVO", "500 LUX");
+        char texto_luminosidade_desejada [16];
+        intToASCIIinCustomBase (luminosidade_desejada , texto_luminosidade_desejada, 10);
+        escreveLCD("MENU - OBJETIVO", texto_luminosidade_desejada);
 
     }
 }
@@ -2259,11 +2261,13 @@ int converteVoltsParaLux(float v_ldr){
     )
     *
     (
-        pow(b,-1)
+        1/b
     );
     return l_ldr;
 }
-
+float v_ldr;
+int leitura;
+int luminosidade_atual;
 void main(void) {
 
     TRISC = 0x00;
@@ -2286,9 +2290,9 @@ void main(void) {
     configIntExterns();
     while(1)
     {
-        int leitura = getValorADC();
-        float v_ldr = converteLeituraAnParaVolts(leitura);
-        int luminosidade_atual = converteVoltsParaLux(v_ldr);
+        leitura = getValorADC();
+        v_ldr = converteLeituraAnParaVolts(leitura);
+        luminosidade_atual = converteVoltsParaLux(v_ldr);
         handleSetupMenu();
         CCPR1L = porcentagem_PWM;
         char texto_luminosidade [16];

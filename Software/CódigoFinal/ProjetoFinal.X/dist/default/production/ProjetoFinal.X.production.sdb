@@ -23,28 +23,18 @@
 [v ___awmod __awmod `(i  1 e 2 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\evalpoly.c
 [v _eval_poly eval_poly `(d  1 e 4 0 ]
-"12 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\exp.c
-[v _exp exp `(d  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\flge.c
 [v ___flge __flge `(b  1 e 0 0 ]
-"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\flneg.c
-[v ___flneg __flneg `(d  1 e 4 0 ]
-"13 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\floor.c
-[v _floor floor `(d  1 e 4 0 ]
 "43 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fltol.c
 [v ___fltol __fltol `(l  1 e 4 0 ]
 "254 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\frexp.c
 [v _frexp frexp `(d  1 e 4 0 ]
-"277
-[v _ldexp ldexp `(d  1 e 4 0 ]
 "5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\log.c
 [v _log log `(d  1 e 4 0 ]
 "39
 [v _log10 log10 `(d  1 e 4 0 ]
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\pow.c
-[v _pow pow `(d  1 e 4 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "242
@@ -79,13 +69,13 @@
 [v _escreveLCD escreveLCD `(v  1 e 1 0 ]
 "190
 [v _handleSetupMenu handleSetupMenu `(v  1 e 1 0 ]
-"203
+"205
 [v _configIntExterns configIntExterns `(v  1 e 1 0 ]
-"212
+"214
 [v _converteLeituraAnParaVolts converteLeituraAnParaVolts `(f  1 e 4 0 ]
-"217
+"219
 [v _converteVoltsParaLux converteVoltsParaLux `(i  1 e 2 0 ]
-"235
+"239
 [v _main main `(v  1 e 1 0 ]
 [s S125 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
@@ -208,20 +198,37 @@
 [v _menu_ativo menu_ativo `i  1 e 2 0 ]
 "36
 [v _luminosidade_desejada luminosidade_desejada `i  1 e 2 0 ]
-"235
+"236
+[v _v_ldr v_ldr `f  1 e 4 0 ]
+"237
+[v _leitura leitura `i  1 e 2 0 ]
+"238
+[v _luminosidade_atual luminosidade_atual `i  1 e 2 0 ]
+"239
 [v _main main `(v  1 e 1 0 ]
 {
-"262
-[v main@texto_luminosidade texto_luminosidade `[16]uc  1 a 16 62 ]
-"258
-[v main@v_ldr v_ldr `f  1 a 4 78 ]
-"259
-[v main@luminosidade_atual luminosidade_atual `i  1 a 2 84 ]
-"257
-[v main@leitura leitura `i  1 a 2 82 ]
-"249
-[v main@texto_menu texto_menu `*.24uc  1 a 1 86 ]
-"270
+"266
+[v main@texto_luminosidade texto_luminosidade `[16]uc  1 a 16 56 ]
+"253
+[v main@texto_menu texto_menu `*.24uc  1 a 1 72 ]
+"274
+} 0
+"190
+[v _handleSetupMenu handleSetupMenu `(v  1 e 1 0 ]
+{
+"198
+[v handleSetupMenu@texto_luminosidade_desejada texto_luminosidade_desejada `[16]uc  1 a 16 18 ]
+"203
+} 0
+"139
+[v _verificaBtnMenos verificaBtnMenos `(v  1 e 1 0 ]
+{
+"155
+} 0
+"119
+[v _verificaBtnMais verificaBtnMais `(v  1 e 1 0 ]
+{
+"137
 } 0
 "86
 [v _intToASCIIinCustomBase intToASCIIinCustomBase `(v  1 e 1 0 ]
@@ -237,7 +244,7 @@
 [v intToASCIIinCustomBase@resto resto `i  1 a 2 10 ]
 "86
 [v intToASCIIinCustomBase@numero numero `i  1 p 2 0 ]
-[v intToASCIIinCustomBase@resultado resultado `*.5uc  1 p 1 2 ]
+[v intToASCIIinCustomBase@resultado resultado `*.4uc  1 p 1 2 ]
 [v intToASCIIinCustomBase@base base `i  1 p 2 3 ]
 "108
 } 0
@@ -265,27 +272,12 @@
 [v ___awdiv@dividend dividend `i  1 p 2 4 ]
 "41
 } 0
-"190 C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
-[v _handleSetupMenu handleSetupMenu `(v  1 e 1 0 ]
-{
-"201
-} 0
-"139
-[v _verificaBtnMenos verificaBtnMenos `(v  1 e 1 0 ]
-{
-"155
-} 0
-"119
-[v _verificaBtnMais verificaBtnMais `(v  1 e 1 0 ]
-{
-"137
-} 0
-"175
+"175 C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
 [v _escreveLCD escreveLCD `(v  1 e 1 0 ]
 {
 [v escreveLCD@linha1 linha1 `*.24uc  1 a 1 wreg ]
 [v escreveLCD@linha1 linha1 `*.24uc  1 a 1 wreg ]
-[v escreveLCD@linha2 linha2 `*.26uc  1 p 2 5 ]
+[v escreveLCD@linha2 linha2 `*.4uc  1 p 1 5 ]
 "178
 [v escreveLCD@linha1 linha1 `*.24uc  1 a 1 9 ]
 "188
@@ -339,98 +331,32 @@
 [v getValorADC@valor valor `i  1 a 2 6 ]
 "84
 } 0
-"217
+"219
 [v _converteVoltsParaLux converteVoltsParaLux `(i  1 e 2 0 ]
 {
-"219
-[v converteVoltsParaLux@b b `f  1 a 4 58 ]
+"221
+[v converteVoltsParaLux@b b `f  1 a 4 22 ]
+"222
+[v converteVoltsParaLux@l_ldr l_ldr `f  1 a 4 0 ]
 "220
-[v converteVoltsParaLux@l_ldr l_ldr `f  1 a 4 32 ]
-"218
-[v converteVoltsParaLux@r_ldr r_ldr `i  1 a 2 56 ]
-"217
-[v converteVoltsParaLux@v_ldr v_ldr `f  1 p 4 28 ]
-"233
-} 0
-"5 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\pow.c
-[v _pow pow `(d  1 e 4 0 ]
-{
-"8
-[v pow@yi yi `ul  1 a 4 24 ]
-"7
-[v pow@sign sign `uc  1 a 1 23 ]
-"5
-[v pow@x x `d  1 p 4 7 ]
-[v pow@y y `d  1 p 4 11 ]
-"31
-} 0
-"12 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\exp.c
-[v _exp exp `(d  1 e 4 0 ]
-{
-"14
-[v exp@exponent exponent `i  1 a 2 4 ]
-"15
-[v exp@sign sign `uc  1 a 1 6 ]
-"12
-[v exp@x x `d  1 p 4 75 ]
-"17
-[v exp@coeff coeff `DC[10]d  1 s 40 coeff ]
-"57
-} 0
-"277 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\frexp.c
-[v _ldexp ldexp `(d  1 e 4 0 ]
-{
-[v ldexp@value value `d  1 p 4 9 ]
-[v ldexp@newexp newexp `i  1 p 2 13 ]
-"307
-} 0
-"13 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\floor.c
-[v _floor floor `(d  1 e 4 0 ]
-{
-"15
-[v floor@i i `d  1 a 4 69 ]
-"16
-[v floor@expon expon `i  1 a 2 73 ]
-"13
-[v floor@x x `d  1 p 4 65 ]
-"30
-} 0
-"43 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fltol.c
-[v ___fltol __fltol `(l  1 e 4 0 ]
-{
-"45
-[v ___fltol@exp1 exp1 `uc  1 a 1 64 ]
-[v ___fltol@sign1 sign1 `uc  1 a 1 63 ]
-"43
-[v ___fltol@f1 f1 `d  1 p 4 55 ]
-"70
-} 0
-"242 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
-[v ___flsub __flsub `(d  1 e 4 0 ]
-{
-[v ___flsub@a a `d  1 p 4 21 ]
-[v ___flsub@b b `d  1 p 4 25 ]
-"250
-} 0
-"15 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\flneg.c
-[v ___flneg __flneg `(d  1 e 4 0 ]
-{
-[v ___flneg@f1 f1 `d  1 p 4 2 ]
-"20
+[v converteVoltsParaLux@r_ldr r_ldr `i  1 a 2 20 ]
+"219
+[v converteVoltsParaLux@v_ldr v_ldr `f  1 p 4 52 ]
+"235
 } 0
 "39 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\log.c
 [v _log10 log10 `(d  1 e 4 0 ]
 {
-[v log10@x x `d  1 p 4 13 ]
+[v log10@x x `d  1 p 4 0 ]
 "42
 } 0
 "5
 [v _log log `(d  1 e 4 0 ]
 {
 "7
-[v log@exponent exponent `i  1 a 2 78 ]
+[v log@exponent exponent `i  1 a 2 77 ]
 "5
-[v log@x x `d  1 p 4 9 ]
+[v log@x x `d  1 p 4 73 ]
 "9
 [v log@coeff coeff `DC[9]d  1 s 36 coeff ]
 "36
@@ -438,43 +364,27 @@
 "254 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\frexp.c
 [v _frexp frexp `(d  1 e 4 0 ]
 {
-[v frexp@value value `d  1 p 4 18 ]
-[v frexp@eptr eptr `*.4i  1 p 1 22 ]
+[v frexp@value value `d  1 p 4 4 ]
+[v frexp@eptr eptr `*.4i  1 p 1 8 ]
 "274
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 {
-[v ___fleq@ff1 ff1 `d  1 p 4 6 ]
-[v ___fleq@ff2 ff2 `d  1 p 4 10 ]
+[v ___fleq@ff1 ff1 `d  1 p 4 2 ]
+[v ___fleq@ff2 ff2 `d  1 p 4 6 ]
 "12
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\evalpoly.c
 [v _eval_poly eval_poly `(d  1 e 4 0 ]
 {
 "6
-[v eval_poly@res res `d  1 a 4 5 ]
+[v eval_poly@res res `d  1 a 4 69 ]
 "4
-[v eval_poly@x x `d  1 p 4 71 ]
-[v eval_poly@d d `*.24DCd  1 p 1 75 ]
-[v eval_poly@n n `i  1 p 2 76 ]
+[v eval_poly@x x `d  1 p 4 57 ]
+[v eval_poly@d d `*.24DCd  1 p 1 61 ]
+[v eval_poly@n n `i  1 p 2 62 ]
 "12
-} 0
-"10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
-[v ___fladd __fladd `(d  1 e 4 0 ]
-{
-"17
-[v ___fladd@grs grs `uc  1 a 1 70 ]
-"15
-[v ___fladd@bexp bexp `uc  1 a 1 69 ]
-"16
-[v ___fladd@aexp aexp `uc  1 a 1 68 ]
-"13
-[v ___fladd@signs signs `uc  1 a 1 67 ]
-"10
-[v ___fladd@b b `d  1 p 4 51 ]
-[v ___fladd@a a `d  1 p 4 55 ]
-"237
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -498,35 +408,68 @@
 [v ___flge@ff2 ff2 `d  1 p 4 6 ]
 "19
 } 0
-"212 C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
+"43 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+{
+"45
+[v ___fltol@exp1 exp1 `uc  1 a 1 51 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 50 ]
+"43
+[v ___fltol@f1 f1 `d  1 p 4 42 ]
+"70
+} 0
+"242 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcadd.c
+[v ___flsub __flsub `(d  1 e 4 0 ]
+{
+[v ___flsub@a a `d  1 p 4 8 ]
+[v ___flsub@b b `d  1 p 4 12 ]
+"250
+} 0
+"10
+[v ___fladd __fladd `(d  1 e 4 0 ]
+{
+"17
+[v ___fladd@grs grs `uc  1 a 1 56 ]
+"15
+[v ___fladd@bexp bexp `uc  1 a 1 55 ]
+"16
+[v ___fladd@aexp aexp `uc  1 a 1 54 ]
+"13
+[v ___fladd@signs signs `uc  1 a 1 53 ]
+"10
+[v ___fladd@b b `d  1 p 4 37 ]
+[v ___fladd@a a `d  1 p 4 41 ]
+"237
+} 0
+"214 C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
 [v _converteLeituraAnParaVolts converteLeituraAnParaVolts `(f  1 e 4 0 ]
 {
-[v converteLeituraAnParaVolts@leitura leitura `f  1 p 4 55 ]
-"215
+[v converteLeituraAnParaVolts@leitura leitura `f  1 p 4 42 ]
+"217
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S631 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S625 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S636 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S639 . 4 `l 1 i 4 0 `d 1 f 4 0 `S631 1 fAsBytes 4 0 `S636 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S639  1 a 4 45 ]
+[s S630 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S633 . 4 `l 1 i 4 0 `d 1 f 4 0 `S625 1 fAsBytes 4 0 `S630 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S633  1 a 4 31 ]
 "12
-[v ___flmul@grs grs `ul  1 a 4 40 ]
-[s S708 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[v ___flmul@grs grs `ul  1 a 4 26 ]
+[s S702 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S711 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S708 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S711  1 a 2 49 ]
+[u S705 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S702 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S705  1 a 2 35 ]
 "10
-[v ___flmul@bexp bexp `uc  1 a 1 44 ]
+[v ___flmul@bexp bexp `uc  1 a 1 30 ]
 "11
-[v ___flmul@aexp aexp `uc  1 a 1 39 ]
+[v ___flmul@aexp aexp `uc  1 a 1 25 ]
 "9
-[v ___flmul@sign sign `uc  1 a 1 38 ]
+[v ___flmul@sign sign `uc  1 a 1 24 ]
 "8
-[v ___flmul@b b `d  1 p 4 25 ]
-[v ___flmul@a a `d  1 p 4 29 ]
+[v ___flmul@b b `d  1 p 4 11 ]
+[v ___flmul@a a `d  1 p 4 15 ]
 "205
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.41\pic\sources\c90\common\Umul8_16.c
@@ -547,20 +490,20 @@
 [v ___fldiv __fldiv `(d  1 e 4 0 ]
 {
 "21
-[v ___fldiv@grs grs `ul  1 a 4 49 ]
+[v ___fldiv@grs grs `ul  1 a 4 36 ]
 "22
-[v ___fldiv@rem rem `ul  1 a 4 42 ]
+[v ___fldiv@rem rem `ul  1 a 4 29 ]
 "20
-[v ___fldiv@new_exp new_exp `i  1 a 2 47 ]
+[v ___fldiv@new_exp new_exp `i  1 a 2 34 ]
 "19
-[v ___fldiv@aexp aexp `uc  1 a 1 54 ]
+[v ___fldiv@aexp aexp `uc  1 a 1 41 ]
 "18
-[v ___fldiv@bexp bexp `uc  1 a 1 53 ]
+[v ___fldiv@bexp bexp `uc  1 a 1 40 ]
 "16
-[v ___fldiv@sign sign `uc  1 a 1 46 ]
+[v ___fldiv@sign sign `uc  1 a 1 33 ]
 "8
-[v ___fldiv@a a `d  1 p 4 29 ]
-[v ___fldiv@b b `d  1 p 4 33 ]
+[v ___fldiv@a a `d  1 p 4 16 ]
+[v ___fldiv@b b `d  1 p 4 20 ]
 "185
 } 0
 "110 C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Software\CódigoFinal\ProjetoFinal.X\newmain.c
@@ -568,10 +511,10 @@
 {
 "117
 } 0
-"203
+"205
 [v _configIntExterns configIntExterns `(v  1 e 1 0 ]
 {
-"210
+"212
 } 0
 "38
 [v _configADC configADC `(v  1 e 1 0 ]

@@ -25,6 +25,15 @@
 #define D5 PORTDbits.RD5
 #define D6 PORTDbits.RD6
 #define D7 PORTDbits.RD7
+#define LED1 PORTDbits.RD1
+#define LED2 PORTDbits.RD0
+#define LED3 PORTCbits.RC7
+#define LED4 PORTCbits.RC6
+#define LED5 PORTCbits.RC5
+#define LED6 PORTCbits.RC4
+#define LED7 PORTCbits.RC3
+#define LED8 PORTCbits.RC1
+
 
 #include "lcd.h"
 
@@ -65,6 +74,43 @@ void configADC(){
     ADCON0bits.CHS1 = 0;
     ADCON0bits.CHS2 = 0;
       
+}
+void atualizarLeds(int porcentagem){
+    int numLEDsAcesos = (porcentagem * 8)/100;
+    LED1= 0;
+    LED2= 0;
+    LED3= 0;
+    LED4= 0;
+    LED5= 0;
+    LED6= 0;
+    LED7= 0;
+    LED8= 0;
+    if(numLEDsAcesos > 0){
+        LED1 = 1;
+    }
+    if(numLEDsAcesos > 1){
+        LED2 = 1;
+    }
+    if(numLEDsAcesos > 2){
+        LED3 = 1;
+    }
+    if(numLEDsAcesos > 3){
+        LED4 = 1;
+    }
+    if(numLEDsAcesos > 4){
+        LED5 = 1;
+    }
+    if(numLEDsAcesos > 5){
+        LED6 = 1;
+    }
+    if(numLEDsAcesos > 6){
+        LED7 = 1;
+    }
+    if(numLEDsAcesos > 7){
+        LED8 = 1;
+    }
+
+    
 }
 
 int getValorADC(){
@@ -195,7 +241,9 @@ void handleSetupMenu ()
      
         verificaBtnMais();
         verificaBtnMenos();
-        escreveLCD("MENU - OBJETIVO", "500 LUX");
+        char texto_luminosidade_desejada [16];
+        intToASCIIinCustomBase (luminosidade_desejada , texto_luminosidade_desejada, 10);
+        escreveLCD("MENU - OBJETIVO", texto_luminosidade_desejada);
        
     }
 }
@@ -227,10 +275,13 @@ int converteVoltsParaLux(float v_ldr){
     ) 
     * 
     (
-        pow(b,-1)
+        1/b
     );
     return l_ldr;
 }
+float v_ldr;
+int leitura;
+int luminosidade_atual;
 
 void main(void) {
   
@@ -254,17 +305,28 @@ void main(void) {
     configIntExterns();
     while(1)
     { 
-        int leitura = getValorADC();
-        float v_ldr = converteLeituraAnParaVolts(leitura);
-        int luminosidade_atual = converteVoltsParaLux(v_ldr);
+        leitura = getValorADC();
+        v_ldr = converteLeituraAnParaVolts(leitura);
+        luminosidade_atual = converteVoltsParaLux(v_ldr);
         handleSetupMenu();
         PWM_REG = porcentagem_PWM;
         char texto_luminosidade [16];
         intToASCIIinCustomBase (luminosidade_atual , texto_luminosidade, 10);
         
         escreveLCD(texto_menu, texto_luminosidade);
-                
-      
+        
+        if(luminosidade_atual < luminosidade_desejada)
+        {
+            if(porcentagem_PWM < 100)   //aumenta pwm
+                porcentagem_PWM++;    
+        }       
+        else if (luminosidade_atual > luminosidade_desejada)
+        {
+            if(porcentagem_PWM > 0)    //diminiu o pwm
+                porcentagem_PWM--;
+        }
+        
+        atualizarLEDs(porcentagem_PWM);
     }
     return;
 }
