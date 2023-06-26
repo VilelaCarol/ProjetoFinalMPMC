@@ -326,7 +326,7 @@ void main(void) {
                 porcentagem_PWM--;
         }
         
-        atualizarLEDs(porcentagem_PWM);
+        atualizarLeds(porcentagem_PWM);
     }
     return;
 }
