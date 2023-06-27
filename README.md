@@ -1,5 +1,7 @@
 # ProjetoFinalMPMC
+
 - Controlador de luz ambiente
+
 1. Introdução
 
 Este relatório apresenta a proposta de um projeto para desenvolver um controlador de luz ambiente que atende aos requisitos técnicos estabelecidos. O objetivo é criar um sistema que leia a luminosidade do ambiente por meio do sensor LDR, exiba as informações em um display de LCD e permita ao usuário ajustar a luminosidade desejada por meio de um menu interativo. O sistema utilizará PWM para controlar a potência de uma lâmpada, garantindo que a luminosidade ambiente nunca seja inferior ao valor selecionado pelo usuário.
@@ -15,29 +17,33 @@ O projeto proposto inclui os seguintes componentes e suas respectivas funcionali
 - Botão "+": Atuará como uma entrada digital para aumentar a luminosidade desejada no menu.
 - Botão "-": Servirá como uma entrada digital para diminuir a luminosidade desejada no menu.
 
-2.2. Saídas:
+  2.2. Saídas:
 
 - Display LCD: Exibirá a luminosidade atual do ambiente e a luminosidade desejada selecionada pelo usuário. Além disso, possibilitará a navegação interativa no menu.
 - Saída de Controle da Lâmpada: Utilizará PWM para controlar a potência da lâmpada, ajustando-a para alcançar a luminosidade desejada.
 - LED de Indicação de Menu Ativo: Será uma saída digital que indicará visualmente quando o menu estiver ativo.
 - LED de Indicação de Luminosidade Baixa: Servirá como uma saída digital para alertar quando a luminosidade ambiente estiver abaixo do mínimo desejado, indicando a necessidade de substituição da lâmpada.
-- Buzzer Sonoro: Será uma saída digital que fornecerá feedback sonoro ao usuário, emitindo diferentes tons ou sequências de sons para transmitir informações importantes, como a confirmação de seleções no menu ou o aviso de luminosidade ambiente abaixo do mínimo.
+- Buzzer Sonoro: Faz um som quando o ENTER for clicado para sair do menu e salvar as alterações na luminosidade desejada
 - Linha de Leds sinalizando quantos % da potencia total da lampada esta sendo utilizada.
-    - A saida será entregue à linha de led atraves de um demux para escrever a % nos leds:
-        - 0 leds acesos = 0%
-        - 8 leds acesos = 100%
+  - A saida será entregue à linha de led atraves de um demux para escrever a % nos leds:
+    - 0 leds acesos = 0%
+    - 8 leds acesos = 100%
+
 1. Conversão da Leitura em Lux
-    
-    Para obter uma medida precisa da luminosidade do ambiente, é necessário converter a leitura digital do sensor LDR em unidades de lux. Apenas será feita uma conversão linear dos valores lidos segundo a seguinte escala:
-    
-    - 1000lux = 400 ohm
-    - 10 lux  = 9k  ohm
-    
+
+   Para obter uma medida precisa da luminosidade do ambiente, é necessário converter a leitura digital do sensor LDR em unidades de lux. Apenas será feita uma conversão linear dos valores lidos segundo a seguinte escala:
+
+   - 1000lux = 400 ohm
+   - 10 lux = 9k ohm
+
 2. Utilização de Timer e Watchdog
-No projeto do controlador de luz ambiente, será utilizado o Watchdog Timer (WDT) em conjunto com o Timer0 para reinicializações periódicas do WDT. A cada interrupção gerada pelo Timer0, a rotina de serviço associada reinicia o WDT, garantindo o funcionamento contínuo do sistema. No caso deste projeto, o período de tempo entre as reinicializações do WDT utilizando o Timer0 será de 5 segundos. Essa abordagem melhora a confiabilidade do sistema, monitorando constantemente o WDT e prevenindo falhas e travamentos causados por problemas no software.
+
+No projeto do controlador de luz ambiente, será utilizado o Watchdog Timer (WDT) para evitar travamentos do sistema.
+O Timer1 será utilizado para a cada 50ms verificar a luminosidade do ambiente e compará-la com a luminosidade desejada. Caso seja menor aumenta o PWM e caso seja maior diminui o PWM.
+
 3. Funcionamento do Controlador de Luz Ambiente
 
-O controlador de luz ambiente proposto funcionará em um loop contínuo, verificando constantemente a luminosidade do ambiente e ajustando a potência da lâmpada para atingir a luminosidade desejada. O sistema buscará alcançar esse objetivo consumindo a menor quantidade de energia possível.
+O controlador de luz ambiente proposto funcionará verificando a cada 50ms, utilizando o estouro do TIMER1, a luminosidade do ambiente e ajustando a potência da lâmpada para atingir a luminosidade desejada. O sistema buscará alcançar esse objetivo consumindo a menor quantidade de energia possível.
 
 Ao iniciar o sistema, o controlador de luz ambiente realizará a leitura da luminosidade atual do ambiente por meio do sensor LDR. Essa leitura será convertida em unidades de lux, conforme descrito na seção 3 do relatório.
 
@@ -51,8 +57,6 @@ Complementando as informações do LCD, uma linha de LEDs informá ao usuário q
 
 O controlador de luz ambiente também monitorará a luminosidade ambiente em relação ao mínimo desejado. Se a luminosidade ambiente estiver abaixo desse valor, o LED de Indicação de Luminosidade Baixa será acionado, alertando o usuário sobre a necessidade de substituição da lâmpada.
 
-Para fornecer feedback sonoro ao usuário, o sistema utilizará o Buzzer Sonoro. Esse componente emitirá diferentes tons ou sequências de sons para transmitir informações importantes, como a confirmação de seleções no menu ou o aviso de luminosidade ambiente abaixo do mínimo.
-
-Para garantir o funcionamento contínuo e a confiabilidade do sistema, será utilizado o Watchdog Timer (WDT) em conjunto com o Timer0. A cada interrupção gerada pelo Timer0, a rotina de serviço associada reiniciará o WDT, evitando falhas ou travamentos causados por problemas no software. O WDT será reiniciado a cada 5 segundos, garantindo a monitoração constante do sistema.
+Para fornecer feedback sonoro ao usuário, o sistema utilizará o Buzzer Sonoro. Esse componente emitirá um som para indicar ao usuário que a alteração no valor da luminosidade desejada foi salvo.
 
 Com esse funcionamento, o controlador de luz ambiente proporcionará um ambiente com a luminosidade desejada pelo usuário, ajustando a potência da lâmpada de forma eficiente e economizando energia.

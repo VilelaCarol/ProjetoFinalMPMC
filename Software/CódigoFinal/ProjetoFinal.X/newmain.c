@@ -16,7 +16,10 @@
 #define ENTER PORTBbits.RB0
 #define PWM_REG CCPR1L        //PINO RC2
 #define BTN_MAIS PORTBbits.RB2
-#define BTN_MENOS PORTBbits.RB3
+#define BTN_MENOS PORTBbits.RB1
+#define BUZZER PORTCbits.RC0
+#define LUM_BAIXA PORTBbits.RB6
+#define MENU_ATIVO PORTBbits.RB7
 
 //*** define pinos referentes a interface com LCD
 #define RS PORTDbits.RD2
@@ -25,6 +28,8 @@
 #define D5 PORTDbits.RD5
 #define D6 PORTDbits.RD6
 #define D7 PORTDbits.RD7
+
+//*** define pinos referentes aos 8 LEDs
 #define LED1 PORTDbits.RD1
 #define LED2 PORTDbits.RD0
 #define LED3 PORTCbits.RC7
@@ -43,7 +48,8 @@ int btn_menos_aux = 0;
 int porcentagem_PWM = 50;
 int menu_ativo = 0;
 int luminosidade_desejada = 400;
-
+int luminosidade_atual;
+int margem_erro_lux = 10;
 void configADC(){
     //configura quais pinos serão entrada analógica...neste caso estou colocando todos como entrada analógica
     ADCON1bits.PCFG0 = 0;
@@ -114,6 +120,9 @@ void atualizarLeds(int porcentagem){
 }
 
 int getValorADC(){
+    //limpa o timer do watchdog
+    CLRWDT();
+    
     int valor;
      //CONVERTE
     
@@ -199,13 +208,13 @@ void verificaBtnMenos(){
         }
     }
 }
-
-
-void __interrupt() interrupcao(void) 
-{
+void verificaInterrupcaoExterna(){
     if(INTF){
         if(menu_ativo){
             menu_ativo = 0;
+            BUZZER = 1;
+            __delay_ms(300);
+            BUZZER = 0;
         }
         else{
         menu_ativo = 1;
@@ -214,7 +223,37 @@ void __interrupt() interrupcao(void)
         INTCONbits.INTF = 0;
     }
      
-   
+}
+void ajustaPWM(){
+    LUM_BAIXA = 0;
+    if(luminosidade_atual < luminosidade_desejada - margem_erro_lux)
+    {
+        LUM_BAIXA = 1;
+        if(porcentagem_PWM < 100)   //aumenta pwm
+            porcentagem_PWM++;    
+    }       
+    else if (luminosidade_atual > luminosidade_desejada + margem_erro_lux)
+    {
+        if(porcentagem_PWM > 0)    //diminiu o pwm
+            porcentagem_PWM--;
+    }
+    PWM_REG = porcentagem_PWM;
+}
+void verificaInterrupcaoTimer(){
+    if(TMR1IF){
+        ajustaPWM();
+        PIR1bits.TMR1IF = 0;
+        TMR1H  = 0xE7;
+        TMR1L  = 0x96;
+  
+    }
+}
+
+void __interrupt() interrupcao(void) 
+{
+    
+    verificaInterrupcaoExterna();
+    verificaInterrupcaoTimer();
 }
 
 
@@ -229,16 +268,17 @@ void escreveLCD(char* linha1, char* linha2)
     Lcd_Write_String(linha2);
     
     __delay_ms(100);
-        
+    
+    //limpa o timer do watchdog
+    CLRWDT();
      
 }
 
 void handleSetupMenu ()
 {
+    MENU_ATIVO = 1;
     while (menu_ativo)                          // Se o botao for acionado
-    {
-
-     
+    {        
         verificaBtnMais();
         verificaBtnMenos();
         char texto_luminosidade_desejada [16];
@@ -246,6 +286,7 @@ void handleSetupMenu ()
         escreveLCD("MENU - OBJETIVO", texto_luminosidade_desejada);
        
     }
+    MENU_ATIVO = 0;
 }
 
 void configIntExterns()
@@ -279,16 +320,56 @@ int converteVoltsParaLux(float v_ldr){
     );
     return l_ldr;
 }
-float v_ldr;
-int leitura;
-int luminosidade_atual;
+
+void configTimer()
+{
+    // Configs de interrup??o
+    INTCONbits.GIE      = 1;
+    INTCONbits.PEIE     = 1;
+    PIE1bits.TMR1IE     = 1;
+    
+    /* Configura??o do Timer1 como temporazidaor*/
+    T1CONbits.TMR1CS    = 0;
+    
+    // Define o pre-scaler em 1:8
+    T1CONbits.T1CKPS0   = 1;
+    T1CONbits.T1CKPS1   = 1;
+    
+    /* Calculos para o contador
+     * clock = 4Mhz -> clock/4 = 1Mhz
+     * 1Mhz/8 = 125Khz -> periodo = 0.000008s ou 8us
+     * Para uma interrup??o a cada 50ms s?o necess?rias 6250 ciclos de m?quina
+     * 65536 - 6250 = 59286     
+     */
+    TMR1H               = 0xE7;
+    TMR1L               = 0x96;
+  
+    T1CONbits.TMR1ON    = 1;
+    
+    
+    
+    return;
+}
+
+void configWatchdogTimer()
+{
+    OPTION_REGbits.PSA = 1; //define que o prescaler esta associado ao WTD
+    OPTION_REGbits.PS0 = 0; // define o prescaler do WTD para 1:64 (1152ms)
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS2 = 1;
+    CLRWDT();
+    return;
+}
+
+
+
 
 void main(void) {
   
     TRISC = 0x00;   // Configure PORTC as output(RC2-PWM1, RC1-PWM2)
     
     OPTION_REGbits.INTEDG = 1;
-    TRISB = 1;
+    TRISB = 0b00000111;
     
     configADC();
     configPWMRegs();
@@ -299,15 +380,16 @@ void main(void) {
     //colocar a variavel
     char* texto_menu;
    
-    texto_menu = "LUMINOSIDADE ATUAL:";
+    texto_menu = "LUX ATUAL:";
    
 
     configIntExterns();
-    int margem_erro_lux = 10;
+    configWatchdogTimer();
+    configTimer();
     while(1)
     { 
-        leitura = getValorADC();
-        v_ldr = converteLeituraAnParaVolts(leitura);
+        int leitura = getValorADC();
+        float v_ldr = converteLeituraAnParaVolts(leitura);
         luminosidade_atual = converteVoltsParaLux(v_ldr);
         handleSetupMenu();
         
@@ -316,18 +398,11 @@ void main(void) {
         
         escreveLCD(texto_menu, texto_luminosidade);
         
-        if(luminosidade_atual < luminosidade_desejada - margem_erro_lux)
-        {
-            if(porcentagem_PWM < 100)   //aumenta pwm
-                porcentagem_PWM++;    
-        }       
-        else if (luminosidade_atual > luminosidade_desejada + margem_erro_lux)
-        {
-            if(porcentagem_PWM > 0)    //diminiu o pwm
-                porcentagem_PWM--;
-        }
-        PWM_REG = porcentagem_PWM;
+
         atualizarLeds(porcentagem_PWM);
+        
+        //limpa o timer do watchdog
+        CLRWDT();
     }
     return;
 }

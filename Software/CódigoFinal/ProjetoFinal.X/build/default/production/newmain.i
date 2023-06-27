@@ -1941,7 +1941,7 @@ extern double fmod(double, double);
 extern double trunc(double);
 extern double round(double);
 # 13 "newmain.c" 2
-# 29 "newmain.c"
+# 43 "newmain.c"
 # 1 "./lcd.h" 1
 
 
@@ -2057,7 +2057,7 @@ void Lcd_Shift_Left()
  Lcd_Cmd(0x01);
  Lcd_Cmd(0x08);
 }
-# 29 "newmain.c" 2
+# 43 "newmain.c" 2
 
 
 
@@ -2066,7 +2066,8 @@ int btn_menos_aux = 0;
 int porcentagem_PWM = 50;
 int menu_ativo = 0;
 int luminosidade_desejada = 400;
-
+int luminosidade_atual;
+int margem_erro_lux = 10;
 void configADC(){
 
     ADCON1bits.PCFG0 = 0;
@@ -2098,8 +2099,48 @@ void configADC(){
     ADCON0bits.CHS2 = 0;
 
 }
+void atualizarLeds(int porcentagem){
+    int numLEDsAcesos = (porcentagem * 8)/100;
+    PORTDbits.RD1= 0;
+    PORTDbits.RD0= 0;
+    PORTCbits.RC7= 0;
+    PORTCbits.RC6= 0;
+    PORTCbits.RC5= 0;
+    PORTCbits.RC4= 0;
+    PORTCbits.RC3= 0;
+    PORTCbits.RC1= 0;
+    if(numLEDsAcesos > 0){
+        PORTDbits.RD1 = 1;
+    }
+    if(numLEDsAcesos > 1){
+        PORTDbits.RD0 = 1;
+    }
+    if(numLEDsAcesos > 2){
+        PORTCbits.RC7 = 1;
+    }
+    if(numLEDsAcesos > 3){
+        PORTCbits.RC6 = 1;
+    }
+    if(numLEDsAcesos > 4){
+        PORTCbits.RC5 = 1;
+    }
+    if(numLEDsAcesos > 5){
+        PORTCbits.RC4 = 1;
+    }
+    if(numLEDsAcesos > 6){
+        PORTCbits.RC3 = 1;
+    }
+    if(numLEDsAcesos > 7){
+        PORTCbits.RC1 = 1;
+    }
+
+
+}
 
 int getValorADC(){
+
+    __asm("clrwdt");
+
     int valor;
 
 
@@ -2170,7 +2211,7 @@ void verificaBtnMais(){
 
 void verificaBtnMenos(){
 
-    if(!btn_menos_aux && !PORTBbits.RB3){
+    if(!btn_menos_aux && !PORTBbits.RB1){
         btn_menos_aux = 1;
         if(luminosidade_desejada>10){
             luminosidade_desejada-=10;
@@ -2180,18 +2221,18 @@ void verificaBtnMenos(){
         }
    }
     else{
-        if(PORTBbits.RB3){
+        if(PORTBbits.RB1){
             btn_menos_aux = 0;
         }
     }
 }
-
-
-void __attribute__((picinterrupt(("")))) interrupcao(void)
-{
+void verificaInterrupcaoExterna(){
     if(INTF){
         if(menu_ativo){
             menu_ativo = 0;
+            PORTCbits.RC0 = 1;
+            _delay((unsigned long)((300)*(4000000/4000.0)));
+            PORTCbits.RC0 = 0;
         }
         else{
         menu_ativo = 1;
@@ -2200,7 +2241,37 @@ void __attribute__((picinterrupt(("")))) interrupcao(void)
         INTCONbits.INTF = 0;
     }
 
+}
+void ajustaPWM(){
+    PORTBbits.RB6 = 0;
+    if(luminosidade_atual < luminosidade_desejada - margem_erro_lux)
+    {
+        PORTBbits.RB6 = 1;
+        if(porcentagem_PWM < 100)
+            porcentagem_PWM++;
+    }
+    else if (luminosidade_atual > luminosidade_desejada + margem_erro_lux)
+    {
+        if(porcentagem_PWM > 0)
+            porcentagem_PWM--;
+    }
+    CCPR1L = porcentagem_PWM;
+}
+void verificaInterrupcaoTimer(){
+    if(TMR1IF){
+        ajustaPWM();
+        PIR1bits.TMR1IF = 0;
+        TMR1H = 0xE7;
+        TMR1L = 0x96;
 
+    }
+}
+
+void __attribute__((picinterrupt(("")))) interrupcao(void)
+{
+
+    verificaInterrupcaoExterna();
+    verificaInterrupcaoTimer();
 }
 
 
@@ -2217,14 +2288,15 @@ void escreveLCD(char* linha1, char* linha2)
     _delay((unsigned long)((100)*(4000000/4000.0)));
 
 
+    __asm("clrwdt");
+
 }
 
 void handleSetupMenu ()
 {
+    PORTBbits.RB7 = 1;
     while (menu_ativo)
     {
-
-
         verificaBtnMais();
         verificaBtnMenos();
         char texto_luminosidade_desejada [16];
@@ -2232,6 +2304,7 @@ void handleSetupMenu ()
         escreveLCD("MENU - OBJETIVO", texto_luminosidade_desejada);
 
     }
+    PORTBbits.RB7 = 0;
 }
 
 void configIntExterns()
@@ -2265,15 +2338,56 @@ int converteVoltsParaLux(float v_ldr){
     );
     return l_ldr;
 }
-float v_ldr;
-int leitura;
-int luminosidade_atual;
+
+void configTimer()
+{
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    PIE1bits.TMR1IE = 1;
+
+
+    T1CONbits.TMR1CS = 0;
+
+
+    T1CONbits.T1CKPS0 = 1;
+    T1CONbits.T1CKPS1 = 1;
+
+
+
+
+
+
+
+    TMR1H = 0xE7;
+    TMR1L = 0x96;
+
+    T1CONbits.TMR1ON = 1;
+
+
+
+    return;
+}
+
+void configWatchdogTimer()
+{
+    OPTION_REGbits.PSA = 1;
+    OPTION_REGbits.PS0 = 0;
+    OPTION_REGbits.PS1 = 1;
+    OPTION_REGbits.PS2 = 1;
+    __asm("clrwdt");
+    return;
+}
+
+
+
+
 void main(void) {
 
     TRISC = 0x00;
 
     OPTION_REGbits.INTEDG = 1;
-    TRISB = 1;
+    TRISB = 0b00000111;
 
     configADC();
     configPWMRegs();
@@ -2284,23 +2398,29 @@ void main(void) {
 
     char* texto_menu;
 
-    texto_menu = "LUMINOSIDADE ATUAL:";
+    texto_menu = "LUX ATUAL:";
 
 
     configIntExterns();
+    configWatchdogTimer();
+    configTimer();
     while(1)
     {
-        leitura = getValorADC();
-        v_ldr = converteLeituraAnParaVolts(leitura);
+        int leitura = getValorADC();
+        float v_ldr = converteLeituraAnParaVolts(leitura);
         luminosidade_atual = converteVoltsParaLux(v_ldr);
         handleSetupMenu();
-        CCPR1L = porcentagem_PWM;
+
         char texto_luminosidade [16];
         intToASCIIinCustomBase (luminosidade_atual , texto_luminosidade, 10);
 
         escreveLCD(texto_menu, texto_luminosidade);
 
 
+        atualizarLeds(porcentagem_PWM);
+
+
+        __asm("clrwdt");
     }
     return;
 }
