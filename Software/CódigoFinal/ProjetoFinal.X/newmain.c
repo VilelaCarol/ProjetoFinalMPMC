@@ -375,6 +375,7 @@ void main(void) {
     configPWMRegs();
     BUZZER = 0;
     
+    
     TRISD = 0;
     Lcd_Init(); //incia o lcd
     //colocar a variavel
