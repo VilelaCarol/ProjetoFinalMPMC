@@ -10,7 +10,6 @@
 #include <pic16f877a.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 
 #pragma config WDTE = OFF   //Desabilita o uso do WDT
@@ -86,6 +85,7 @@ void configADC(){
     ADCON0bits.CHS0 = 0;
     ADCON0bits.CHS1 = 0;
     ADCON0bits.CHS2 = 0;
+    return;
       
 }
 void atualizarLeds(int porcentagem){
@@ -123,7 +123,7 @@ void atualizarLeds(int porcentagem){
         LED8 = 1;
     }
 
-    
+    return;
 }
 
 int getValorADC(){
@@ -167,6 +167,7 @@ void intToASCIIinCustomBase(int numero, char* resultado, int base) {
         resultado[i] = resultado[j];
         resultado[j] = temp;
     }
+    return;
 }
 
 void configPWMRegs(){
@@ -175,13 +176,13 @@ void configPWMRegs(){
     PWM_REG = porcentagem_PWM;    
     TMR2ON = 1;     
     
-    
+    return;
 }
 
 void verificaBtnMais(){
     
     //verificando botão mais 
-    if(!btn_mais_aux && !BTN_MAIS){
+    if(!BTN_MAIS){
         btn_mais_aux = 1;
         if(luminosidade_desejada<1000){
             luminosidade_desejada+=10;
@@ -190,17 +191,13 @@ void verificaBtnMais(){
             luminosidade_desejada = 1000;
         }
     }
-    else{
-        if(BTN_MAIS){
-            btn_mais_aux = 0;
-        }
-    }
-
+    
+    return;
 }
 
 void verificaBtnMenos(){
 
-    if(!btn_menos_aux && !BTN_MENOS){
+    if(!BTN_MENOS){
         btn_menos_aux = 1;
         if(luminosidade_desejada>10){
             luminosidade_desejada-=10;
@@ -209,27 +206,24 @@ void verificaBtnMenos(){
             luminosidade_desejada = 10;
         }
    }
-    else{
-        if(BTN_MENOS){
-            btn_menos_aux = 0;
-        }
-    }
+    
+    return;
 }
 void verificaInterrupcaoExterna(){
     if(INTF){
-        if(menu_ativo){
-            menu_ativo = 0;
+        if( MENU_ATIVO){
+            MENU_ATIVO = 0;
             BUZZER = 1;
             __delay_ms(300);
             BUZZER = 0;
         }
         else{
-        menu_ativo = 1;
+         MENU_ATIVO = 1;
         }
         
         INTCONbits.INTF = 0;
     }
-     
+     return;
 }
 void ajustaPWM(){
     LUM_BAIXA = 0;
@@ -237,14 +231,15 @@ void ajustaPWM(){
     {
         LUM_BAIXA = 1;
         if(porcentagem_PWM < 100)   //aumenta pwm
-            porcentagem_PWM++;    
+            porcentagem_PWM+=10;    
     }       
     else if (luminosidade_atual > luminosidade_desejada + margem_erro_lux)
     {
         if(porcentagem_PWM > 0)    //diminiu o pwm
-            porcentagem_PWM--;
+            porcentagem_PWM-=10;
     }
     PWM_REG = porcentagem_PWM;
+    return;
 }
 void verificaInterrupcaoTimer(){
     if(TMR1IF){
@@ -254,6 +249,7 @@ void verificaInterrupcaoTimer(){
         TMR1L  = 0x96;
   
     }
+    return;
 }
 
 void __interrupt() interrupcao(void) 
@@ -278,12 +274,12 @@ void escreveLCD(char* linha1, char* linha2)
     
     //limpa o timer do watchdog
     CLRWDT();
-     
+     return;
 }
 
 void handleSetupMenu ()
 {
-    MENU_ATIVO = 1;
+   
     
     while (MENU_ATIVO)                          // Se o botao for acionado
     {        
@@ -295,6 +291,7 @@ void handleSetupMenu ()
        
     }
     MENU_ATIVO = 0;
+    return;
 }
 
 void configIntExterns()
@@ -371,7 +368,7 @@ void main(void) {
     configADC();
     configPWMRegs();
     BUZZER = 0;
-    
+    MENU_ATIVO = 0;
     
     TRISD = 0;
     Lcd_Init(); //incia o lcd
