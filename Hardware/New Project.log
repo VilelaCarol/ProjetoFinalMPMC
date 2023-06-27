@@ -1,0 +1,5 @@
+# Writing all output to: C:\Users\carol\OneDrive\Documentos\UFSC\ProjetoFinalMPMC\Hardware\New Project.log
+set pad_wire_necking on
+bus diagonal
+fanout 5
+route 50

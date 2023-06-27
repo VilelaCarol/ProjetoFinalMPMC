@@ -373,7 +373,7 @@ void main(void) {
     
     configADC();
     configPWMRegs();
-    
+    BUZZER = 0;
     
     TRISD = 0;
     Lcd_Init(); //incia o lcd
