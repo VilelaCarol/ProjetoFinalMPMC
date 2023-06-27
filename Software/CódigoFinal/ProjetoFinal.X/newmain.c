@@ -303,29 +303,30 @@ void main(void) {
    
 
     configIntExterns();
+    int margem_erro_lux = 10;
     while(1)
     { 
         leitura = getValorADC();
         v_ldr = converteLeituraAnParaVolts(leitura);
         luminosidade_atual = converteVoltsParaLux(v_ldr);
         handleSetupMenu();
-        PWM_REG = porcentagem_PWM;
+        
         char texto_luminosidade [16];
         intToASCIIinCustomBase (luminosidade_atual , texto_luminosidade, 10);
         
         escreveLCD(texto_menu, texto_luminosidade);
         
-        if(luminosidade_atual < luminosidade_desejada)
+        if(luminosidade_atual < luminosidade_desejada - margem_erro_lux)
         {
             if(porcentagem_PWM < 100)   //aumenta pwm
                 porcentagem_PWM++;    
         }       
-        else if (luminosidade_atual > luminosidade_desejada)
+        else if (luminosidade_atual > luminosidade_desejada + margem_erro_lux)
         {
             if(porcentagem_PWM > 0)    //diminiu o pwm
                 porcentagem_PWM--;
         }
-        
+        PWM_REG = porcentagem_PWM;
         atualizarLeds(porcentagem_PWM);
     }
     return;
