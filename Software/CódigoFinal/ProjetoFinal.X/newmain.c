@@ -12,6 +12,13 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+#pragma config WDTE = OFF   //Desabilita o uso do WDT
+#pragma config FOSC = HS     //define uso do clock externo EM 4 OU 20mHZ
+//se usar o XT no máximo 4Mhz
+#pragma config PWRTE = ON   //habilita reset ao ligar
+#pragma config BOREN = OFF   //Habilita o reset por Brown-out
+
 #define _XTAL_FREQ 4000000
 #define ENTER PORTBbits.RB0
 #define PWM_REG CCPR1L        //PINO RC2
@@ -277,7 +284,8 @@ void escreveLCD(char* linha1, char* linha2)
 void handleSetupMenu ()
 {
     MENU_ATIVO = 1;
-    while (menu_ativo)                          // Se o botao for acionado
+    
+    while (MENU_ATIVO)                          // Se o botao for acionado
     {        
         verificaBtnMais();
         verificaBtnMenos();
@@ -304,21 +312,10 @@ float converteLeituraAnParaVolts(float leitura)
 }
 
 int converteVoltsParaLux(float v_ldr){
-    int r_ldr = (10000*v_ldr)/(5-v_ldr);
-    float b = ((log10(4) - log10(9)) - 1)/990;
-    float  l_ldr = 
-    (
-        log10(r_ldr) 
-        - 
-        log10(400) 
-        + 
-        1000 * b
-    ) 
-    * 
-    (
-        1/b
-    );
-    return l_ldr;
+    float a = -456.64;
+    float b = 1087.67;
+    float lux = a * v_ldr + b;
+    return (int)lux;
 }
 
 void configTimer()
@@ -392,6 +389,7 @@ void main(void) {
         int leitura = getValorADC();
         float v_ldr = converteLeituraAnParaVolts(leitura);
         luminosidade_atual = converteVoltsParaLux(v_ldr);
+        
         handleSetupMenu();
         
         char texto_luminosidade [16];
